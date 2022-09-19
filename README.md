@@ -19,17 +19,17 @@ Login.
 
 Login guide
 
-    User  <br>
-    -Login Url: https://domainname/login <br>
-    -Rgister Url: https://domainname/register <br>
+    User  
+    -Login Url: https://domainname/login 
+    -Rgister Url: https://domainname/register 
 
-    Channel<br>
-    -Login Url: https://domainname/channel/login <br>
-    -Rgister Url: https://domainname/channel/register <br>
+    Channel
+    -Login Url: https://domainname/channel/login 
+    -Rgister Url: https://domainname/channel/register 
 
-    Admin<br>
-    -Login Url: https://domainname/admin/login <br>
-    -Rgister Url: https://domainname/admin/register <br>
+    Admin
+    -Login Url: https://domainname/admin/login 
+    -Rgister Url: https://domainname/admin/register 
 
  Domingo Api Docs
 
