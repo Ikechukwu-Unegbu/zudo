@@ -29,11 +29,11 @@
                                 </a>
                             </li>
 
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="{{route('admin.channels')}}" class="nav-link">
                                     <i class="icon icon-target"></i> Channels
                                 </a>
-                            </li> -->
+                            </li>
 
 
 
@@ -123,7 +123,7 @@
                                     <i class="icon icon-energy"></i> Loans
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </li>
 

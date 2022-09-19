@@ -18,7 +18,7 @@
                     <i class="fa fa-bell"></i>
                     @if(count($unread) ==0)
 
-                    @else 
+                    @else
                     <span class="badge badge-pill badge-danger">{{count($unread)}}</span>
                     @endif
                 </a>
@@ -29,10 +29,10 @@
                     <i class="fa fa-envelope-open"></i>
                     @if(count($comp) ==0)
 
-                    @else 
+                    @else
                     <span class="badge badge-pill badge-danger">{{count($comp)}}</span>
                     @endif
-                   
+
                 </a>
             </li>
 
@@ -63,9 +63,12 @@
                         <i class="fa fa-wrench"></i> Settings
                     </a>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"  class="dropdown-item">
+                            <i class="fa fa-lock"></i> Logout
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>

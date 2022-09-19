@@ -16,3 +16,128 @@ Login.
 2. Admin db notification generated
 
 4. Deposit/Withdrawal table ready
+
+Login guide
+
+    User  <br>
+    -Login Url: https://domainname/login <br>
+    -Rgister Url: https://domainname/register <br>
+
+    Channel<br>
+    -Login Url: https://domainname/channel/login <br>
+    -Rgister Url: https://domainname/channel/register <br>
+
+    Admin<br>
+    -Login Url: https://domainname/admin/login <br>
+    -Rgister Url: https://domainname/admin/register <br>
+
+ Domingo Api Docs
+
+    To Register an Admin
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/admin/register',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Body:
+        {
+            "name": " ",
+            "username": " ",
+            "email": " ", 
+            "password": " ",
+            "password_confirmation": " "
+        }
+
+    To Register A Channel
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/channel/register',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Body:
+        {
+            "name": " ",
+            "username": " ",
+            "email": " ", 
+            "password": " ",
+            "password_confirmation": " "
+        }
+
+    To Login as an Admin
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/admin/login',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Body:
+        {
+            "email": " ", 
+            "password": " ",
+        }
+
+    To Login as a Channel
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/channel/login',
+    Headers: 'Accept: application/json',
+    Body:
+        {
+            "email": " ", 
+            "password": " ",
+        }
+
+    To Logout
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/logout'
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+
+    
+    Forgot Password
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/forgot-password',
+    Headers: 'Accept: application/json',
+    Method: 'POST',
+    Body:
+        {
+            "email": " ",
+        }
+
+    To Reset Password
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/reset-password',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Body:
+        {
+            "token": " ",
+            "email": " ",
+            "password": " ",
+            "password_confirmation": " " 
+        }
+
+    For Admin to Create new Channel
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/admin/channel/create',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+    Body:
+        {
+            "name": " ",
+            "username": " ",
+            "email": " ",
+            "mobile": " ",
+            "gender": " ",
+            "password": " ",
+            "password_confirmation": " ",
+            "description": " ",
+        }
+
+
+    For Admin to Read all Channels
+    - Make a get request to this endpoint
+    url: 'https://domainname/api/admin/channels',
+    Method: 'GET',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+
+
+    Configure MAIL_MAILER in .env file to let Forget Password & Reset Password to work

@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->integer('channel_id')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('phone')->nullable();
             $table->string('bvn')->nullable();
             $table->string('avatar')->nullable();
             $table->string('fullname')->nullable();
+            $table->text('channel_description')->nullable();
+            $table->enum('access', ['user','customer', 'channel', 'admin']);
             $table->softDeletes();
-            $table->enum('access', ['user','customer', 'agent', 'admin']);
 
         });
     }
