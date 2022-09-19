@@ -1,0 +1,24 @@
+.search_form{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;   
+}
+.not-img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+
+}
+.notification-card{
+    border-radius: 20px;
+    height: 4rem;
+    display: flex !important;
+    justify-content: center !important;
+}
+.notification-card .card-body{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 3rem;
+
+}

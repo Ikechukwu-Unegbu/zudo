@@ -1,0 +1,31 @@
+.filter_form{
+    display: flex;
+    flex-direction: row;
+    grid-gap: 2rem;
+}
+
+
+.inner-comment{
+    display: flex;
+    /* justify-content: center; */
+    grid-gap: 2rem;
+}
+
+.inner-comment  img{
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+
+.comment-footer{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    width: 100% !important;
+    background-color: rgb(211, 211, 211);
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.comment-inner .content{
+
+}
