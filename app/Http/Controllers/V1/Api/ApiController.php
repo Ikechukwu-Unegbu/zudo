@@ -22,7 +22,7 @@ class ApiController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|string',
-                'username'  =>  'required|string',
+                'username'  =>  'required|string|unique:users,name',
                 'email'     =>  'required|email|unique:users,email',
                 'password'  =>  'required|string|min:6',
                 'password_confirmation'  =>  'required|same:password'
@@ -64,7 +64,7 @@ class ApiController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|string',
-                'username'  =>  'required|string',
+                'username'  =>  'required|string|unique:users,name',
                 'email'     =>  'required|email|unique:users,email',
                 'password'  =>  'required|string|min:6',
                 'password_confirmation'  =>  'required|same:password'
@@ -272,7 +272,7 @@ class ApiController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'name'      =>  'required|string',
-                'username'  =>  'required|string',
+                'username'  =>  'required|string|unique:users,name',
                 'email'     =>  'required|email|unique:users,email',
                 'mobile'    =>  'required|min:11|max:11|unique:users,phone',
                 'gender'    =>  'required|string',

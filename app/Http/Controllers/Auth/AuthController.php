@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'name'  =>  'required|string',
-            'username'  =>  'required|string',
+            'username'  =>  'required|string|unique:users,name',
             'email'     =>  'required|email|unique:users,email',
             'password'  =>  'required|string|min:6',
             'password_confirmation'  =>  'required|same:password'
@@ -99,7 +99,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'name'  =>  'required|string',
-            'username'  =>  'required|string',
+            'username'  =>  'required|string|unique:users,name',
             'email'     =>  'required|email|unique:users,email',
             'password'  =>  'required|string|min:6',
             'password_confirmation'  =>  'required|same:password'
@@ -125,7 +125,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'name'  =>  'required|string',
-            'username'  =>  'required|string',
+            'username'  =>  'required|string|unique:users,name',
             'email'     =>  'required|email|unique:users,email',
             'password'  =>  'required|string|min:6',
             'password_confirmation'  =>  'required|same:password'

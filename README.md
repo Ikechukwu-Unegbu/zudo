@@ -46,6 +46,44 @@ Login guide
             "password": " ",
             "password_confirmation": " "
         }
+    Success Response: 
+        {
+            "message": "Admin Created Successfully",
+            "user": {
+                "name": "Emmanuel",
+                "fullname": "Emmanuel Ade",
+                "email": "emmanuel@gmail.com",
+                "access": "admin",
+                "updated_at": "2022-09-20T17:58:06.000000Z",
+                "created_at": "2022-09-20T17:58:06.000000Z",
+                "id": 1
+            },
+            "token": "11|OyTkILfqOpXMc8rwsopWffwSVUPlBPCIhCu3AU7B"
+        }
+    Validation Response:
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "name": [
+                    "The name field is required."
+                ],
+                "username": [
+                    "The username field is required.",
+                    "The username has already been taken."
+                ],
+                "email": [
+                    "The username field is required.",
+                    "The email has already been taken."
+                ],
+                "password": [
+                    "The password field is required."
+                ],
+                "password_confirmation": [
+                    "The password confirmation field is required."
+                ]
+            }
+        }
 
     To Register A Channel
     - Make a post request to this endpoint
@@ -60,6 +98,45 @@ Login guide
             "password": " ",
             "password_confirmation": " "
         }
+    Success Response:
+    {
+            "message": "Channel Created Successfully",
+            "user": {
+                "name": "Emmanuel",
+                "fullname": "Emmanuel Ade",
+                "email": "ade@gmail.com",
+                "access": "channel",
+                "updated_at": "2022-09-20T18:04:07.000000Z",
+                "created_at": "2022-09-20T18:04:07.000000Z",
+                "id": 2
+            },
+            "token": "12|tYhES63D73mjdnj1UHa1dX2AOPo5KBjfWOuhzsr6"
+    }
+    
+    Validation Response:
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "name": [
+                    "The name field is required."
+                ],
+                "username": [
+                    "The username field is required.",
+                    "The username has already been taken."
+                ],
+                "email": [
+                    "The username field is required.",
+                    "The email has already been taken."
+                ],
+                "password": [
+                    "The password field is required."
+                ],
+                "password_confirmation": [
+                    "The password confirmation field is required."
+                ]
+            }
+        }
 
     To Login as an Admin
     - Make a post request to this endpoint
@@ -72,6 +149,29 @@ Login guide
             "password": " ",
         }
 
+    Success Response:
+    {
+        "status": true,
+        "message": "User Logged In Successfully",
+        "username": "Emmanuel",
+        "access": "admin",
+        "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+    }
+
+    Validation Response:
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "email": [
+                    "The email field is required."
+                ],
+                "password": [
+                    "The password field is required."
+                ]
+            }
+        }
+
     To Login as a Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/login',
@@ -81,6 +181,29 @@ Login guide
             "email": " ", 
             "password": " ",
         }
+    
+    Success Response:
+        {
+            "status": true,
+            "message": "User Logged In Successfully",
+            "username": "Emmanuel",
+            "access": "channel",
+            "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+        }
+        
+    Validation Response:
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "email": [
+                    "The email field is required."
+                ],
+                "password": [
+                    "The password field is required."
+                ]
+            }
+        }
 
     To Logout
     - Make a post request to this endpoint
@@ -88,6 +211,10 @@ Login guide
     Method: 'POST',
     Headers: 'Accept: application/json',
     Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+    Success Response: 
+        {
+            "message": "User Logged out Successfully"
+        }
 
     
     Forgot Password
@@ -100,17 +227,57 @@ Login guide
             "email": " ",
         }
 
+    Success Response:
+        {
+            "status": "We have emailed your password reset link!"
+        }
+
+    Validation Response: 
+        {
+            "message": "The email field is required.",
+            "errors": {
+                "email": [
+                    "The email field is required."
+                ]
+            }
+        }
+
     To Reset Password
     - Make a post request to this endpoint
     url: 'https://domainname/api/reset-password',
     Method: 'POST',
     Headers: 'Accept: application/json',
+
+    Token Response From Mail = "http:/domainname/reset-password/81b76e1c3b6d5f97688230479498137753ad0605fa1810e3d8cbb85af19912a8?email=adegmail.com";
+
     Body:
         {
-            "token": " ",
+            "token": "81b76e1c3b6d5f97688230479498137753ad0605fa1810e3d8cbb85af19912a8",
             "email": " ",
             "password": " ",
             "password_confirmation": " " 
+        }
+
+
+    Success Response:
+        {
+            "message": "Password reset Successfully"
+        }
+
+    Validation Response:
+        {
+            "message": "The token field is required. (and 2 more errors)",
+            "errors": {
+                "token": [
+                    "The token field is required."
+                ],
+                "email": [
+                    "The email field is required."
+                ],
+                "password": [
+                    "The password field is required."
+                ]
+            }
         }
 
     For Admin to Create new Channel
@@ -125,10 +292,60 @@ Login guide
             "username": " ",
             "email": " ",
             "mobile": " ",
-            "gender": " ",
+            "gender": "Male or Female",
             "password": " ",
             "password_confirmation": " ",
             "description": " ",
+        }
+
+    Success Response:
+        {
+            "message": "Channel Created Successfully",
+            "user": {
+                "fullname": "Channel",
+                "name": "channel",
+                "email": "channel@gmail.com",
+                "phone": "09009090909",
+                "gender": "Male",
+                "channel_description": "Channel",
+                "access": "channel",
+                "updated_at": "2022-09-20T18:25:09.000000Z",
+                "created_at": "2022-09-20T18:25:09.000000Z",
+                "id": 3
+            },
+            "token": "15|fvW6k088pNnkqWC6AM66wBWjT448TDPoEczWuCnA"
+        }
+
+    Validation Response: 
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "name": [
+                    "The name field is required."
+                ],
+                "username": [
+                    "The username field is required."
+                ],
+                "email": [
+                    "The email field is required."
+                ],
+                "mobile": [
+                    "The mobile field is required."
+                ],
+                "gender": [
+                    "The gender field is required."
+                ],
+                "password": [
+                    "The password field is required."
+                ],
+                "password_confirmation": [
+                    "The password confirmation field is required."
+                ],
+                "description": [
+                    "The description field is required."
+                ]
+            }
         }
 
 
@@ -138,6 +355,46 @@ Login guide
     Method: 'GET',
     Headers: 'Accept: application/json',
     Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+
+    Success Response:
+        {
+            "channels": [
+                {
+                    "id": 3,
+                    "name": "channel",
+                    "email": "channel@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "2022-09-20T18:25:09.000000Z",
+                    "updated_at": "2022-09-20T18:25:09.000000Z",
+                    "channel_id": null,
+                    "gender": "male",
+                    "phone": "09009090909",
+                    "bvn": null,
+                    "avatar": null,
+                    "fullname": "Channel",
+                    "channel_description": "Channel",
+                    "access": "channel",
+                    "deleted_at": null
+                },
+                {
+                    "id": 2,
+                    "name": "Emmanuel",
+                    "email": "emmanuel@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "2022-09-20T18:04:07.000000Z",
+                    "updated_at": "2022-09-20T18:04:07.000000Z",
+                    "channel_id": null,
+                    "gender": null,
+                    "phone": null,
+                    "bvn": null,
+                    "avatar": null,
+                    "fullname": "Emmanuel Ade",
+                    "channel_description": null,
+                    "access": "channel",
+                    "deleted_at": null
+                }
+            ]
+        }
 
 
     Configure MAIL_MAILER in .env file to let Forget Password & Reset Password to work
