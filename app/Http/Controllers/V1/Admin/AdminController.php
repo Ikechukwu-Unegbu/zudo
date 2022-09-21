@@ -28,7 +28,7 @@ class AdminController extends Controller
             $total = Transaction::where('customer_id', Auth::user()->id)->sum('amount');
             $totalWithdraw = PublicRequest::where('customer_id', Auth::user()->id)->sum('amount');
             $bankinfo = Bankaccount::where('user_id', Auth::user()->id)->get();
-            return view('customer.home.index')  
+            return view('customer.home.index')
                                                 ->with('bankacc', $bankinfo)
                                                 ->with('cons', $contributions)
                                                 ->with('withdraws', $withdrawal)
@@ -90,8 +90,9 @@ class AdminController extends Controller
 
     public function customers(){
         $customers = User::orderBy('id', 'desc')->paginate(20);
+        $channels = User::whereAccess('channel')->get();
 
-        return view('admin.customers.customers')->with('customers', $customers);
+        return view('admin.customers.customers', compact('channels'))->with('customers', $customers);
     }
 
     public function userCreate(Request $request){
@@ -102,6 +103,7 @@ class AdminController extends Controller
             'email'=>'required|string',
             'password'=>'required|string',
             'user_type'=>'required|string'
+
         ]);
         DB::transaction(function() use($request){
             //first create user
@@ -112,6 +114,7 @@ class AdminController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->access = $request->user_type;
+            $user->channel_id = $request->channel;
             $user->save();
             // $newUser = User::find()
             //create account records
@@ -134,14 +137,14 @@ class AdminController extends Controller
                 $uploadInstance = new FileUploadService();
                 $uploadInstance->upload($request, 'kin', $kin->id);
             }
-            
+
             //image upload -- next of kin document
             if($request->hasFile('user_dp')) {
                 $uploadInstance = new FileUploadService();
                 $uploadInstance->upload($request, 'user', $user->id);
             }
         });
-     
+
 
         Session::flash('success', 'New user(agent) succcessfully created.');
         return redirect()->back();

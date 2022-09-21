@@ -51,6 +51,15 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="" class="form-label">Select a Channel <span>*</span></label>
+                    <select class="custom-select" name="channel">
+                      <option selected>Open this select menu</option>
+                        @foreach($channels as $channel)
+                            <option value="{{ $channel->id }}">{{ $channel->fullname }}</option>
+                        @endforeach
+                    </select>
+              </div>
+            <div class="form-group">
                 <label for="" class="form-label">Password <span>*</span></label>
                 <input type="text" name="password" class="form-control">
             </div>
