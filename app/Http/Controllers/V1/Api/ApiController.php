@@ -5,6 +5,8 @@ namespace App\Http\Controllers\V1\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\V1\Admin\Channel;
+use App\Models\V1\Admin\Transaction;
+use App\Services\SMSService;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -319,11 +321,90 @@ class ApiController extends Controller
         if ($request->wantsJson() && auth()->user()->access == 'admin')
         {
             $channels = User::whereAccess('channel')->orderBy('created_at', 'DESC')->get();
-            return response()->json([
-                'channels'  =>  $channels,
-            ]);
+            return response()->json($channels);
         }
         else{
+            return null;
+        }
+    }
+
+    public function AssignedUser()
+    {
+        if(request()->wantsJson() && auth()->user()->access == 'channel')
+        {
+            $assignedUser = User::whereAccess('user')->whereChannelId(auth()->user()->id)->orderBy('id', 'ASC')->get();
+            return response()->json($assignedUser);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function contribution()
+    {
+        if(request()->wantsJson() && auth()->user()->access == 'channel')
+        {
+            $contributions = Transaction::with('customer')->whereAgentId(auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+            return response()->json($contributions);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function createContribution(Request $request)
+    {
+        if(request()->wantsJson() && auth()->user()->access == 'channel')
+        {
+
+            $validator = Validator::make($request->all(), [
+                'amount'=>'required|string',
+                'userId'  =>  'required|integer',
+                'purpose' => 'nullable|string'
+            ]);
+
+            if($validator->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validator->errors()
+                ], 401);
+            }
+
+
+            $type ='';
+            $trx = new Transaction();
+            $trx->amount = $request->amount;
+            $trx->customer_id = $request->userId;
+            $trx->agent_id = auth()->user()->id;
+            $trx->purpose = $request->purpose ? $request->purpose : $request->input('purpose', 'Contribution');
+            $trx->trx_type = 1;
+            $trx->save();
+            $customer = User::find($request->userId);
+            //send sms to the user
+
+            // $smsService = new SMSService();
+            // $message ='';
+            // if($request->type == 1){
+            //     $message = "Your contribution of N".$request->amount." received.";
+            // }
+            // else{
+            //     $message = "Your debit of N".$request->amount." is being processed.";
+            // }
+            // $smsresponse = $smsService->senderSMS($message, $customer->phone, 'Spartan');
+            // $smsService->logsms($smsresponse, $trx);
+
+            return response()->json([
+                'message' => 'Contribution/Debit Created Successfully',
+                'amount'  =>  $trx->amount,
+                'user'    =>  $trx->customer->name,
+                'purpose' =>  $trx->purpose
+            ]);
+        }
+        else
+        {
             return null;
         }
     }

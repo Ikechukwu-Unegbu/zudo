@@ -1,13 +1,13 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
+    {{-- <x-auth-card> --}}
+        {{-- <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
-        </x-slot>
+        </x-slot> --}}
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        {{-- <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -54,6 +54,32 @@
         </form>
         <div class="mt-3 new-account">
             <p class="text-sm">Don't have an account? <a class="text-primary" href="{{ route('register.index') }}">Sign up</a></p>
+        </div> --}}
+    {{-- </x-auth-card> --}}
+
+    <div class="min-h-screen flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100">
+
+
+        <div class="w-full sm:max-w-md text-center mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="pb-3 border-b mt-5">
+                <a href="{{ route('administrator.login') }}">
+                    <i class="fa fa-user" style="font-size: 50px"></i>
+                </a>
+                <br>
+                <div>
+                    <a href="{{ route('administrator.login') }}" class="btn btn-sm btn-secondary bg-black">Admin</a>
+                </div>
+            </div>
+
+            <div class="pt-3 mt-5">
+                <a href="{{ route('channel.login.index') }}">
+                    <i class="fa fa-user" style="font-size: 50px"></i>
+                </a>
+                <br>
+                <div>
+                    <a href="{{ route('channel.login.index') }}" class="btn btn-sm btn-secondary bg-black">Channel</a>
+                </div>
+            </div>
         </div>
-    </x-auth-card>
+    </div>
 </x-guest-layout>

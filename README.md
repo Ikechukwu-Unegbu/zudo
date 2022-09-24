@@ -210,7 +210,7 @@ Login guide
     url: 'https://domainname/api/logout'
     Method: 'POST',
     Headers: 'Accept: application/json',
-    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+    Headers: 'Authorization: Bearer --Token',
     Success Response: 
         {
             "message": "User Logged out Successfully"
@@ -285,7 +285,7 @@ Login guide
     url: 'https://domainname/api/admin/channel/create',
     Method: 'POST',
     Headers: 'Accept: application/json',
-    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+    Headers: 'Authorization: Bearer --Token',
     Body:
         {
             "name": " ",
@@ -354,7 +354,7 @@ Login guide
     url: 'https://domainname/api/admin/channels',
     Method: 'GET',
     Headers: 'Accept: application/json',
-    Headers: 'Authorization: Bearer --AuthenticatedUserToken',
+    Headers: 'Authorization: Bearer --Token',
 
     Success Response:
         {
@@ -394,6 +394,92 @@ Login guide
                     "deleted_at": null
                 }
             ]
+        }
+
+    User Assigned to Channel
+    - Make a get request to this endpoint
+    url: 'https://domainname/api/channel/user/assign',
+    Method: 'GET',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    Response: 
+        {
+            "id": 16,
+            "name": "Doe",
+            "email": "janedoe@gmail.com",
+            "email_verified_at": null,
+            "created_at": "2022-09-24T02:34:15.000000Z",
+            "updated_at": "2022-09-24T02:34:15.000000Z",
+            "channel_id": 6,
+            "gender": null,
+            "phone": "09099009900",
+            "bvn": null,
+            "avatar": "null",
+            "fullname": "Jane Doe",
+            "channel_description": null,
+            "access": "user",
+            "deleted_at": null
+        }
+
+    For Channel to get Contribution
+    - Make a get request to this endpoint
+    url: 'https://domainname/api/channel/deposit',
+    Method: 'GET',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    Response: 
+        {
+            "id": 196,
+            "customer_id": 16,
+            "agent_id": "6.00",
+            "trx_type": 1,
+            "amount": "80.00",
+            "purpose": "contribution",
+            "sync": "0",
+            "deleted_at": null,
+            "created_at": "2022-09-24T03:03:12.000000Z",
+            "updated_at": "2022-09-24T03:03:12.000000Z",
+            "approved": 0,
+            "withdraw_type": null,
+            "initiated_by": null
+        }
+    
+    For Channel to create contribution/debit for user Assigned to the channel
+    - Make a post request to this endpoint
+    url: 'https://domainname/api/channel/deposit/create',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+
+    NB: use this URL  ([url => 'https://domainname/api/channel/user/assign', Method => GET]) to select the id of the user while selecting user to make deposit/contribution.
+
+    Body:
+        {
+            "amount": " ",
+            "userId": " ",
+            "purpose": " "
+        }
+
+    
+    Validation Response:
+        "status": false,
+        "message": "validation error",
+        "errors": {
+            "amount": [
+                "The amount field is required."
+            ],
+            "userId": [
+                "The user id field is required.",
+                "The user id must be an integer."
+            ]
+        }
+
+    Success Response: 
+        {
+            "message": "Contribution/Debit Created Successfully",
+            "amount": "100000",
+            "user": "Jane Doe",
+            "purpose": "Contribution"
         }
 
 

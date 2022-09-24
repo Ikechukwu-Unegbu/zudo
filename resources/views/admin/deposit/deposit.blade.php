@@ -38,7 +38,7 @@
 </div>
     <!-- table start -->
     <div class="">
-      <button class="btn btn-sm btn-primary" 
+      <button class="btn btn-sm btn-primary"
       data-toggle="modal" data-target="#new-deposit">New Deposit</button>
     </div>
     <table class="table">
@@ -73,18 +73,21 @@
           </td>--}}
           <td>
             <!-- comment buttons -->
-            @if($loggedUser->access == 'agent')
+            @if($loggedUser->access == 'channel')
             <button data-toggle="modal" data-target="#comment-{{$trx->id}}" class="btn btn-sm btn-secondary">
-                <span>{{count($trx->comment)}}</span>|<span> <i class="fa-solid fa-comment"></i></span>
+                <span>{{count($trx->comment)}}</span>|<span> <i class="fa fa-solid fa-comment"></i></span>
             </button>
             <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#read-{{$trx->id}}">
-                <span>{{count($trx->comment)}}</span>|<span><i class="fa-solid fa-eye"></i></span>
+                <span>{{count($trx->comment)}}</span>|<span><i class="fa fa-solid fa-eye"></i></span>
             </button>
+            {{-- <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#edit-deposit-{{$trx->id}}">
+                <span><i class="fa fa-solid fa-edit"></i></span>
+            </button> --}}
             @elseif($loggedUser->access == 'admin')
             <button data-toggle="modal" data-toggle="modal" data-target="#read-{{$trx->id}}" data-target="#read-{{$trx->id}}" class="btn btn-sm btn-secondary">
                 <span>{{count($trx->comment)}}</span>|<span><i class="fa-solid fa-eye"></i></span>
             </button>
-            @else 
+            @else
             @endif
             <!-- end of comment buttons -->
             <!-- beginning of edit -->
@@ -96,7 +99,7 @@
             <button class="btn btn-sm btn-secondary">
                 <span><i class="fa-solid fa-pen-to-square"></i></span>
             </button>
-            @else 
+            @else
             @endif -->
             <!--view comments if any  -->
 

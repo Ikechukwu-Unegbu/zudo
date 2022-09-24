@@ -33,6 +33,18 @@ Route::group([
 
 });
 
+
+Route::group([
+    'prefix' => 'channel',
+    'middleware' => ['auth:sanctum'],
+], function() {
+    Route::get('/user/assign', [ApiController::class, 'AssignedUser']);
+    Route::get('/deposit', [ApiController::class, 'contribution']);
+    Route::post('/deposit/create', [ApiController::class, 'createContribution']);
+
+});
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -16,7 +16,7 @@ class AgentAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->access == 'admin' ||auth()->user()->access == 'agent'){
+        if(auth()->user()->access == 'admin' || auth()->user()->access == 'channel'){
             return $next($request);
         }
         return redirect()->route('admin.home');

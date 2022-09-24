@@ -56,15 +56,15 @@ class AdminController extends Controller
 
             $totalAgent = [];
             $agentName = [];
-            foreach (User::whereAccess('agent')->get() as $agent)
+            foreach (User::whereAccess('channel')->get() as $channel)
             {
-                $totalAgent[] = Transaction::whereAgentId($agent->id)->sum('amount');
-                $agentName[] = $agent->name;
+                $totalAgent[] = Transaction::whereAgentId($channel->id)->sum('amount');
+                $agentName[] = $channel->name;
             }
             /*  */
             return view('admin.home.index', [
                 'users' => User::whereAccess('user')->count(),
-                'agents' => User::whereAccess('agent')->count(),
+                'channels' => User::whereAccess('channel')->count(),
                 'transations'   =>  Transaction::whereTrxType(true)->sum('amount'),
                 'withdraws'     =>  Transaction::whereTrxType(false)->sum('amount'),
                 'monthlyRegisteredUsers' => $MonthlyRegisteredUsers,
