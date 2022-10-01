@@ -28,7 +28,7 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
     Route::get('/panel/customers', [AdminController::class, 'customers'])->name('admin.customers');
     Route::get('/panel/customer/search', [SearchController::class, 'customerSearch'])->name('admin.customer.search');
     Route::get('/panel/user/show/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
-    Route::get('/panel/user/show/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
+    // Route::get('/panel/user/show/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
 
     //user details
     Route::post('/panel/bank/update/{userid}/{bankid}', [UserController::class, 'updateBank'])->name('panel.bank.update')->middleware(['admin_only']);

@@ -84,8 +84,8 @@ class AdminController extends Controller
     }
 
     public function agents(){
-        $agents = User::where('access', 'agent')->orderBy('id', 'desc')->get();
-        return view('admin.agents.index')->with('agents', $agents);
+        $agents = User::where('access', 'channel')->orderBy('id', 'desc')->get();
+        return view('admin.agents.index')->with('channels', $agents);
     }
 
     public function customers(){
@@ -161,9 +161,11 @@ class AdminController extends Controller
         $user = User::find($userid);
         $bankinfo = Bankaccount::where('user_id', $userid)->get();
         $kins = Kin::where('user_id', $userid)->get();
+        $channels = User::where('access', 'channels')->get();
 
         return view('admin.user.show')->with('user', $user)->with('bankacc', $bankinfo)
-                                        ->with('kins', $kins);
+                                        ->with('kins', $kins)
+                                        ->with('channels', $channels);
     }
 
     public function chartPage(){
