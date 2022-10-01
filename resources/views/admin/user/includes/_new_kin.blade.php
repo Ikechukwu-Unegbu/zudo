@@ -1,7 +1,4 @@
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-kin-{{$k->id}}">
-  Launch static backdrop modal
-</button> -->
+
 
 <!-- Modal -->
 <div class="modal fade" id="new-kin" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -59,10 +56,7 @@
           </div>
         </form>
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div> -->
+  
     </div>
   </div>
 </div>

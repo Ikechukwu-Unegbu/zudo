@@ -45,18 +45,27 @@
               <label for="" class="form-label">Select User type <span>*</span></label>
                 <select class="custom-select" name="user_type">
                     <option selected>Open this select menu</option>
-                    <option value="agent">Agent</option>
+                    <option value="channel">Agent</option>
                     <option value="user">Customer</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="form-group">
+                <label for="" class="form-label">Select a Channel <span>*</span></label>
+                    <select class="custom-select" name="channel">
+                      <option selected>Open this select menu</option>
+                        @foreach($channels as $channel)
+                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                        @endforeach
+                    </select>
+            </div>
+            <div class="form-group">
                 <label for="" class="form-label">Password <span>*</span></label>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group">
                 <label for="" class="form-label">Confirm Password <span>*</span></label>
-                <input type="text" name="confirm" class="form-control">
+                <input type="password" name="confirm" class="form-control">
             </div>
             <hr>
             <!-- next of kin -->

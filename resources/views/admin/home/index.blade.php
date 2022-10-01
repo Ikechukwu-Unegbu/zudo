@@ -35,8 +35,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="mb-0 card-title text-uppercase text-muted">Agents</h5>
-                                        <span class="mb-0 h2 font-weight-bold">{{ $agents }}</span>
+                                        <h5 class="mb-0 card-title text-uppercase text-muted">Channels</h5>
+                                        <span class="mb-0 h2 font-weight-bold">{{ $channels }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="text-white shadow icon icon-shape bg-primary rounded-circle">

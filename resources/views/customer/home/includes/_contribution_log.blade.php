@@ -33,12 +33,12 @@
                             <th scope="row">{{$contribution->id}}</th>
                             <td><a href="#" class="text-primary fw-bold">{{$contribution->purpose}}</a></td>
                             <td>N {{$contribution->amount}}</td>
-                            <td class="fw-bold">{{$contribution->agent->name}}</td>
+                            <td class="fw-bold">{{$contribution->agent->name ?? ''}}</td>
                             <!-- <td>{{$contribution->created_at}}</td> -->
                             <td>{{ date('Y M -d D', strtotime($contribution->created_at)) }}</td>
                         </tr>
                         @endforeach
-                   
+
                     </tbody>
                   </table>
                     <div class="">{{$cons->links()}}</div>

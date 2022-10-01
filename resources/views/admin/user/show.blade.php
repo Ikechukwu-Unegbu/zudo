@@ -113,7 +113,7 @@
 
 
 </div>
-@include('admin.user.includes._new_bank')
+{{--@include('admin.user.includes._new_bank')--}}
 @include('admin.agents.include._new_agent_modal')
 @include('admin.user.includes._new_kin')
 

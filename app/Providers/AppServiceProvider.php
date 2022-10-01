@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFour();
+        $this->loadMigrationsFrom('database/migrations/admin');
+        $this->loadMigrationsFrom('database/migrations/users');
     }
 }

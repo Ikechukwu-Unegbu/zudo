@@ -28,7 +28,7 @@ class TransactionController extends Controller
         }elseif(Auth::user()->access == 'admin'){
             $transactions = Transaction::paginate(50);
         }
-       
+
         return view('admin.transaction.all.all')->with('transactions', $transactions);
     }
 
@@ -36,20 +36,23 @@ class TransactionController extends Controller
         //print('right here'); die;
         if(request()->input('start_date')==null || request()->input('end_date')==null){
             //handle when user is not admin
-            if(Auth::user()->access == 'agent'){
+            if(Auth::user()->access == 'channel'){
                 $transactions = Transaction::where('trx_type', 1)
                     ->where('agent_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(50);
-                return view('admin.deposit.deposit')->with('transactions', $transactions);
+                $users = User::whereAccess('user')->whereChannelId(auth()->user()->id)->get();
+                return view('admin.deposit.deposit', compact('users'))->with('transactions', $transactions);
             }
             //when user is admin, get everything.
             $transactions = Transaction::where('trx_type', 1)->orderBy('id', 'desc')->paginate(50);
-            return view('admin.deposit.deposit')->with('transactions', $transactions);
+
+            $users = User::whereAccess('user')->whereChannelId(auth()->user()->id)->get();
+            return view('admin.deposit.deposit', compact('users'))->with('transactions', $transactions);
         }
 
         $startDate = Carbon::createFromFormat('Y-m-d', request()->input('start_date'));
         $endDate = Carbon::createFromFormat('Y-m-d', request()->input('end_date'));
         // when user is not admin, get record for that user only
-        if(Auth::user()->access == 'agent'){
+        if(Auth::user()->access == 'channel'){
             $transactions = Transaction::where('trx_type', 1)
             ->whereBetween('created_at', [$startDate, $endDate])
             ->where('agent_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(50);
@@ -60,11 +63,11 @@ class TransactionController extends Controller
             ->whereBetween('created_at', [$startDate, $endDate])->orderBy('id', 'desc')->paginate(50);
             return view('admin.deposit.deposit')->with('transactions', $transactions);
         }
-     
+
     }
 
     public function withdrawTransactions(){
-        
+
         if(request()->input('start_date')==null || request()->input('end_date')==null){
            //when user is not admin, get records for that user only
             if(Auth::user()->access == 'agent'){
@@ -87,7 +90,7 @@ class TransactionController extends Controller
                 ->orderBy('id', 'desc')->paginate(50);
                 return view('admin.deposit.withdrawal')->with('transactions', $transactions);
         }
-     
+
     }
 
 
@@ -97,7 +100,7 @@ class TransactionController extends Controller
             'amount'=>'required|string',
             'customer'=>'required|string'
         ]);
-       
+
         $agent = User::find(Auth::user()->id);
         $customer = User::findOrFail($request->customer);
         $trx = new Transaction();
@@ -119,7 +122,7 @@ class TransactionController extends Controller
             'type'=>'required|string'
         ]);
         $type ='';
-      
+
         $agent = User::find(Auth::user()->id);
         $trx = new Transaction();
         $trx->amount =$request->input('amount');
@@ -134,7 +137,7 @@ class TransactionController extends Controller
         $smsService = new SMSService();
         $message ='';
         if($request->type == 1){
-            $message = "Your contribution of N".$request->amount." recieved.";
+            $message = "Your contribution of N".$request->amount." received.";
         }
         else{
             $message = "Your debit of N".$request->amount." is being processed.";
@@ -153,7 +156,7 @@ class TransactionController extends Controller
 
 
     public function updateTrx(Request $request, $id){
-      
+
        $request->validate([
             'amount'=>'required|string',
             'customer'=>'required|string'
@@ -182,7 +185,7 @@ class TransactionController extends Controller
     public function registerWithdraw(Request $request){
         $request->validate([
             'amount'=>'required|string',
-            'password'=>'required|string', 
+            'password'=>'required|string',
             'type'=>'required|string'
         ]);
 
@@ -211,7 +214,7 @@ class TransactionController extends Controller
         $transactions = Transaction::where('customer_id', $userId)->paginate(12);
         $totalDebit = Transaction::where('customer_id', $userId)->where('trx_type', 0)->where('approved', 1)->sum('amount');
         $totalCredit = Transaction::where('customer_id', $userId)->where('trx_type', 1)->sum('amount');
-        
+
         foreach($transactions as $trx){
             // $bookings = DB::table('transactions')
             $totalWiths= Transaction::whereDate('created_at', "<=", Date($trx->created_at))->where('trx_type', 0)
@@ -219,11 +222,11 @@ class TransactionController extends Controller
             $totalContribution= Transaction::whereDate('created_at', "<=", Date($trx->created_at))->where('trx_type', 1)
             ->sum('amount');
             $trx->total_bal = $totalContribution-$totalWiths;
-            
+
         }
         $customer = User::find($userId);
         $totalContribution = Transaction::where('customer_id', $userId)->sum('amount');
-       
+
         return view('admin.transaction.transactions')
                                             ->with('transactions', $transactions)
                                             ->with('user', $customer)
@@ -232,17 +235,17 @@ class TransactionController extends Controller
                                             ->with('total_credit', $totalCredit);
     }
 
-    
+
     public function reportgenerate(){
        if(request()->input('start_date') == null || request()->input('end_date')==null || request()->input('userid')==null){
         (new FastExcel(Transaction::all()))->export('exports/transactions.xlsx', function ($trxtion) {
             return [
                 'ID'=>$trxtion->id,
                 'NAME'=>$trxtion->customer->name,
-                'CUSTOMER ID'=>$trxtion->customer->id, 
+                'CUSTOMER ID'=>$trxtion->customer->id,
                 'CREDIT'=>$trxtion->trx_type?$trxtion->amount:0,
                 'DEBIT'=>$trxtion->trx_type?0:$trxtion->amount,
-                'DATE'=>$trxtion->created_at, 
+                'DATE'=>$trxtion->created_at,
                 'AGENT'=>$trxtion->agent->name
             ];
         });
@@ -250,16 +253,16 @@ class TransactionController extends Controller
 
        $startDate = Carbon::createFromFormat('Y-m-d', request()->input('start_date'));
         $endDate = Carbon::createFromFormat('Y-m-d', request()->input('end_date'));
-  
+
         $trx = Transaction::whereBetween('created_at', [$startDate, $endDate])->get();
        (new FastExcel($trx))->export('exports/transactions.xlsx', function ($trxtion) {
             return [
                'ID'=>$trxtion->id,
                'NAME'=>$trxtion->customer->name,
-               'CUSTOMER ID'=>$trxtion->customer->id, 
+               'CUSTOMER ID'=>$trxtion->customer->id,
                'CREDIT'=>$trxtion->trx_type?$trxtion->amount:0,
                'DEBIT'=>$trxtion->trx_type?0:$trxtion->amount,
-               'DATE'=>$trxtion->created_at, 
+               'DATE'=>$trxtion->created_at,
                'AGENT'=>$trxtion->agent->name
             ];
         });
