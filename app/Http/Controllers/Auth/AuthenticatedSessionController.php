@@ -9,6 +9,8 @@ use App\Models\V1\Admin\Transaction;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,12 +35,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        // var_dump($request->all());
-        // die;
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
+      
+        $anyUser = User::where('phone', $request->email)->orWhere('email', $request->email)->first();
+        
+        if(!$anyUser){
+            Session::flash('failed', "Incorrect Credentials.");
+            return redirect()->back();
+        }
+       
+        if(!Hash::check($request->password, $anyUser->password)){
+            Session::flash('failed', 'Incorrect Credentials.');
+            return redirect()->back();
+        }
+        $user = User::find($anyUser->id);
+       
+        Auth::guard('web')->login($user, $request->remember_me);
+   
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

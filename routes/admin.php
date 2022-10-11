@@ -37,12 +37,12 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
     Route::post('/panel/kin/edit/{userid}/{kinid}', [UserController::class, 'updateKin'])->name('panel.kin.update')->middleware(['admin_only']);
 
 
-    Route::post('/panel/agents/create', [AdminController::class, 'userCreate'])->name('admin.agent.create');
+    Route::post('/panel/channel/create', [AdminController::class, 'channelCreate'])->name('channel.channel.create');
     Route::get('/panel/agents/deactivate/{id}', [AdminController::class, 'deactivateAgent'])->name('admin.agents.deactivate')->middleware('admin_only');
     Route::get('/panel/notificaion', [NotificationController::class, 'index'])->name('nofitication');
 
     Route::post('/agent/customer/deposite/{customerid}', [TransactionController::class, 'store'])->name('agent.customer.deposit.index');
-    Route::post('/agent/customer/alt/deposit', [TransactionController::class, 'storeAlt'])->name('agent.customer.dep');
+    Route::post('/channel/customer/alt/deposit', [TransactionController::class, 'storeAlt'])->name('agent.customer.dep');
 
 
 
@@ -66,7 +66,7 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
 
     //channels
     Route::get('/panel/channel', [ChannelController::class, 'index'])->name('admin.channels');
-    Route::post('/panel/channel/create', [ChannelController::class, 'create'])->name('panel.channel.create');
+    // Route::post('/panel/channel/create', [ChannelController::class, 'create'])->name('panel.channel.create');
 
 
     // transactions

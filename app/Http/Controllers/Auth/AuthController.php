@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -71,23 +74,27 @@ class AuthController extends Controller
     public function channelLogin(Request $request)
     {
         $this->validate($request, [
-            'email'     =>      'required|string|email',
+            'email'     =>      'required|string',
             'password'   =>     'required|string'
         ]);
 
-        if(Auth::attempt($request->only('email', 'password')))
-        {
-            if(auth()->user()->access == 'channel')
-            {
-                return redirect()->intended('/panel');
-            }else{
-                auth()->logout();
-                return redirect()->back()->withErrors('You are not allow to Access this Page');
-            }
+        $anyUser = User::where('phone', $request->email)->orWhere('email', $request->email)->first();
+        
+        
+        if(!$anyUser){
+            Session::flash('failed', "Incorrect Credentials.");
+            return redirect()->back();
         }
-        else {
-            return redirect()->back()->withErrors(trans('auth.failed'));
+       
+        if(!Hash::check($request->password, $anyUser->password)){
+            Session::flash('failed', 'Incorrect Credentials.');
+            return redirect()->back();
         }
+        $user = User::find($anyUser->id);
+       
+        Auth::guard('web')->login($user, $request->remember_me);
+   
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     public function channelRegisterIndex()

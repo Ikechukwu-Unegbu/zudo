@@ -112,7 +112,7 @@ class TransactionController extends Controller
         $trx->save();
 
         Session::flash('success', 'Deposit registered successfully for '.$customer->name);
-        return redirect()->route('admin.customer.deposit');
+        return redirect()->back();
     }
 
     public function store(Request $request, $customerId){

@@ -115,6 +115,7 @@ class AdminController extends Controller
             $user->password = Hash::make($request->password);
             $user->access = $request->user_type;
             $user->channel_id = $request->channel;
+            $user->channel_description  = $request->description;
             $user->save();
             // $newUser = User::find()
             //create account records
@@ -150,6 +151,40 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function channelCreate(Request $request){
+        $request->validate([
+            'username'=>'required|string',
+            'fullname'=>'required|string',
+            'phone'=>'required|string',
+            'email'=>'required|string',
+            'password'=>'required|string',
+            'user_type'=>'required|string'
+        ]);
+        DB::transaction(function() use($request){
+            //first create user
+            $user = new User();
+            $user->fullname = $request->fullname;
+            $user->name = $request->username;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->access = $request->user_type;
+            $user->channel_id = $request->channel;
+            $user->channel_description  = $request->description;
+            $user->save();
+           
+
+            //image upload -- next of kin document
+            if($request->hasFile('user_dp')) {
+                $uploadInstance = new FileUploadService();
+                $uploadInstance->upload($request, 'user', $user->id);
+            }
+        });
+
+
+        Session::flash('success', 'New channel succcessfully created.');
+        return redirect()->back();
+    }
     public function deactivateAgent($agentId){
         $agent = User::find($agentId);
         $agent->delete();

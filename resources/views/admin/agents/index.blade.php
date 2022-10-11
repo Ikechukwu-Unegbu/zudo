@@ -6,11 +6,13 @@
 
 @section('content')
 <div class="container">
-<h3 class="text-center"> Agents or Staffs List</h3>
+<h3 class="text-center">Channels or Agents List</h3>
 <div>
+    @if(Auth::user()->access == 'admin' || Auth::user()->access =='superadmin')
     <button class="button btn btn-sm btn-primary"  data-toggle="modal" data-target="#new-staff">
-        new staff
+        new channel
     </button>
+    @endif
 
     @include('partials._message')
 </div>
@@ -26,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-   @foreach($agents as $agent)
+   @foreach($channels as $agent)
    <tr>
       <th scope="row">{{$agent->id}}</th>
       <td>{{$agent->name}}</td>

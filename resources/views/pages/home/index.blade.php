@@ -37,7 +37,7 @@
     <!-- End Pricing Section -->
     <br><br><br>
     <!-- ======= Testimonials Section ======= -->
-    @include('pages.home.include._testimonial')
+    {{--@include('pages.home.include._testimonial')--}}
     <!-- End Testimonials Section -->
 
     <!-- ======= Frequently Asked Questions Section ======= -->

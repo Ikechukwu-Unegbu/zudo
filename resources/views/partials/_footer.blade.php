@@ -4,10 +4,10 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span>Spartan Cooperative</span>
+            <span>Zudovest Cooperative</span>
           </a>
           <p>
-            Spartan Cooperative Limited - a leading name in community finance.
+            Zudovest Cooperative - a leading name in community finance.
           </p>
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -46,7 +46,7 @@
   Gwagwa AMAC FCT
             <br><br>
             <strong>Phone:</strong>08133188180, 08077500900<br>
-            <strong>Email:</strong> contactus@spartancooperative.com<br>
+            <strong>Email:</strong> contactus@zudovest.com<br>
           </p>
 
         </div>

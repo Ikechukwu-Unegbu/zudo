@@ -4,7 +4,7 @@
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h2 data-aos="fade-up">Living. Improved daily.</h2>
           <p data-aos="fade-up" data-aos-delay="100">
-          Spartan Cooperative Limited is a technology-driven grassroots financial services company.  We focus on both banked and unbanked, leveraging cutting-edge technology and a human-centered approach to provide financial services to our customers and members. 
+          Zudovest Cooperative Limited is a technology-driven grassroots financial services company.  We focus on both banked and unbanked, leveraging cutting-edge technology and a human-centered approach to provide financial services to our customers and members. 
           </p>
 
           <!-- <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">

@@ -9,26 +9,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">New Spartan Member</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">New Zudovest Channel</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{route('admin.agent.create')}}" method="post" enctype='multipart/form-data'>
+        <form action="{{route('channel.channel.create')}}" method="post" enctype='multipart/form-data'>
             @csrf
             <div class="form-group">
                 <label for="" class="form-label">Username <span>*</span></label>
                 <input type="text" name="username" class="form-control">
             </div>
-            <div class="form-group mt-2">
+           {{-- <div class="form-group mt-2">
               <label for="" class="form-label">Profile Pics</label>
               <div class="custom-file">
                 <!-- <label for="" class="form-label">Upload Doc/ID Card</label> -->
                 <input type="file" name="user_dp" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                 <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
               </div>
-            </div>
+            </div>--}}
             <div class="form-group">
                 <label for="" class="form-label">Fullname <span>*</span></label>
                 <input type="text" name="fullname" class="form-control">
@@ -50,7 +50,7 @@
                     <option value="admin">Admin</option>
                 </select>
             </div>
-            <div class="form-group">
+            {{--<div class="form-group">
                 <label for="" class="form-label">Select a Channel <span>*</span></label>
                     <select class="custom-select" name="channel">
                       <option selected>Open this select menu</option>
@@ -58,7 +58,7 @@
                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                         @endforeach
                     </select>
-            </div>
+            </div>--}}
             <div class="form-group">
                 <label for="" class="form-label">Password <span>*</span></label>
                 <input type="password" name="password" class="form-control">
@@ -69,7 +69,7 @@
             </div>
             <hr>
             <!-- next of kin -->
-            <h5 class="text-center">Next of Kin Info</h5>
+           {{-- <h5 class="text-center">Next of Kin Info</h5>
             <div class="form-group mt-2">
               <label for="" class="form-label">Fullname: </label>
               <input type="text" name="kin_fullname" class="form-control">
@@ -108,9 +108,13 @@
             <div class="form-group mt-2">
               <label for="" class="form-label">Bank Account: </label>
               <input type="text" name="bank_account" class="form-control">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-sm btn-primary">Create</button>
+            </div>--}}
+            <divi class="form-group mt-2">
+              <label for="" class="form-label">Description</label>
+              <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
+            </divi>
+            <div class="form-group mt-3">
+                <button style="float: right;" class="btn btn-sm btn-primary">Create</button>
             </div>
         </form>
       </div>

@@ -14,27 +14,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{route('agent.customer.dep')}}" method="post">
-            @csrf
+      <form action="{{route('agent.customer.dep')}}" method="post">
+            @csrf 
+            <div class="form-group">
+              <h5 id="wallet" class="textcenter">
+
+              </h5>
+            </div>
             <div class="form-group">
                 <label for="" class="form-label">Amount <span><b class="must">*</b></span></label>
                 <input type="text" name="amount" class="form-control">
             </div>
-            @if(auth()->user()->access == 'admin')
             <div class="form-group mt-3">
                 <label for="" class="form-label">User ID <span><b class="must">*</b></span></label>
-                <input type="text" name="customer" class="form-control">
-                <small><span></span></small>
-            </div>
-            @endif
-            <div class="form-group">
-                <label for="" class="form-label">Select a User <span>*</span></label>
-                <select class="custom-select" name="customer">
-                    <option selected>Open this select menu</option>
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-                </select>
+                <input type="text" id="customer" name="customer" class="form-control">
+                <small><span style="font-weight:bold ;" id="customer_display"></span></small>
             </div>
             <div class="form-group mt-3">
                 <label for="" class="form-label">Description(Optional)</label>
@@ -46,10 +40,10 @@
             </div>
         </form>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary btn-sm">Understood</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

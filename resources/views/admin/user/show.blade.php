@@ -31,6 +31,11 @@
         <div class="profile-image" style="display: flex; justify-content:center;">
             <img @if($user->avatar == null) src="{{asset('image\avatar.jpg')}}" @else src="{{asset('public/userfiles/'.$user->avatar)}}"  @endif alt="" class="user-dp img-fluid">
         </div>
+        @if($user->access == 'channel')
+        <div class="">
+            <p class="text-center">{{$user->channel_description}}</p>
+        </div>
+        @endif
         <!-- <div class="mt-4"> -->
             <a href="{{route('admin.user.transaction',[$user->id ])}}" style="float: right;" class="btn btn-primary btn-sm">
                 View Transactions
