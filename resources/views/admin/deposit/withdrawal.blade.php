@@ -54,7 +54,7 @@
           <td>{{$trx->customer->name}}</td>
           <td>{{ date('M d-Y @ h:ma', strtotime($trx->created_at)) }}</td>
           <td>
-            @if($trx->sync != 0)
+            @if($trx->approved != 0)
                 <span>Approved</span>
             @else
                 <span>Pending</span>
