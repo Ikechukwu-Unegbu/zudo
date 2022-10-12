@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            // $table->decimal('amount', 14, 2);
-            // $table->enum('type',['transfer', 'cash'])->nullable();
-            // $table->tinyInteger('approved')->default(0);
-            // $table->integer('customer_id');
-            // $table->text('description')->nullable();
-            // $table->string('staff_id')->nullable();
+            $table->decimal('amount', 14, 2);
+            $table->enum('type',['transfer', 'cash'])->nullable();
+            $table->tinyInteger('approved')->default(0);
+            $table->integer('customer_id');
+            $table->text('description')->nullable();
+            $table->string('staff_id')->nullable();
             $table->timestamps();
         });
     }

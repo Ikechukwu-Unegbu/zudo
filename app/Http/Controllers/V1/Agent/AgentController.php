@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1\Agent;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\V1\Admin\Transaction;
+use App\Models\V1\Public\Request as PublicRequest;
 use App\Notifications\TellAdminAboutWithdrawalRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -20,25 +21,21 @@ class AgentController extends Controller
             'amount'=>'required|string',
             'method'=>'required|string'
         ]);
+        $quest = new PublicRequest();
+        $quest->amount = $request->amount;
+        $quest->type = $request->type;
+        $quest->approved = 0;
+        $quest->customer_id = $request->customer;
+        $quest->description = $request->description;
+        $quest->staff_id = Auth::user()->id;
+        $quest->save();
+         //send notifications
+         $admin = User::where('access','!=', 'users')->get();
+         $user = User::find($request->customer);
+         Notification::sendNow($admin, new TellAdminAboutWithdrawalRequest($quest, $user));
 
-        //enter
-        $trx = new Transaction();
-
-        $trx->amount = $request->amount;
-        $trx->initiated_by = Auth::user()->id;
-        $trx->withdraw_type = $request->method;
-        $trx->customer_id = $request->customer;
-        $trx->agent_id = Auth::user()->id;
-        $trx->trx_type = 0;
-        $trx->approved = 0;
-        $trx->purpose = $request->pupose?$request->purpose:'withdrawal';
-        $trx->save();
-        //send notifications
-        $admin = User::where('access','!=', 'users')->get();
-        Notification::sendNow($admin, new TellAdminAboutWithdrawalRequest($trx));
-
+        
         //send message 
-
         Session::flash('success', 'Withdrawal request posted for admin.');
         return redirect()->back();
     }
