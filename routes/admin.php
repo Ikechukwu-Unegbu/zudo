@@ -101,4 +101,8 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
     Route::get('/panel/faq/faq/{faq:slug}/delete', [FAQController::class, 'faqDestroy'])->name('admin.faq.delete');
 
     Route::get('/panel/loan', [LoanController::class, 'loan'])->name('admin.loan');
+
+    Route::get('/panel/all-trx/excel', [ReportGenController::class, 'allTransactionExcelReport'])->name('excel.report');
+
+
 });

@@ -37,7 +37,7 @@
     </div>
     <h2 style="color:green">All Spartan Transaction Report</h2>
     <div class="report_control">
-    <a href="" class="btn btn-primary btn-sm">Export As Excel</a>
+    <a href="{{route('excel.report')}}" class="btn btn-primary btn-sm">Export As Excel</a>
         <form action="{{route('all.transactions')}}" method="get">
             <div class="form-group">
                 <label for="" class="form-label">User ID</label>
