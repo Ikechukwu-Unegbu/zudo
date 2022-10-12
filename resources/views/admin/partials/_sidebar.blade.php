@@ -132,13 +132,13 @@
                             <i class="icon icon-graph"></i> Analytics<i class="fa fa-caret-left"></i>
                         </a>
 
-                        <ul class="nav-dropdown-items">
+                        {{--<ul class="nav-dropdown-items">
                             <li class="nav-item">
                                 <a href="{{route('charts')}}" class="nav-link">
                                     <i class="icon icon-graph"></i> Charts
                                 </a>
                             </li>
-                        </ul>
+                        </ul>--}}
                     </li>
 
 

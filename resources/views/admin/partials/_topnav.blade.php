@@ -5,7 +5,7 @@
 
         <a class="navbar-brand" href="#">
             <!-- <img src="{{asset('dashboard/imgs/logo.png')}}" alt="logo"> -->
-            Spartan Cooperative
+            Zudovest
         </a>
 
         <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
