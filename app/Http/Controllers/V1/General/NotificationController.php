@@ -32,12 +32,12 @@ class NotificationController extends Controller
 
         if(request()->input('filter') == null || request()->input('filter')=='unread'){
             $notification = User::find($userId)->unreadNotifications;
-            return view('customer.notification.user_notification')->with('notifications', $notification);
+            return view('customer.notification.index')->with('notifications', $notification);
         }
 
         if(request()->input('filter') == 'all'){
             $notification = User::find($userId)->notifications()->paginate(30);
-            return view('customer.notification.user_notification')->with('notifications', $notification);
+            return view('customer.notification.index')->with('notifications', $notification);
         }
         
     }
