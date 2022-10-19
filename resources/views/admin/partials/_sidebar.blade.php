@@ -112,7 +112,7 @@
                         </ul>
                     </li>--}}
 
-                    <li class="nav-item nav-dropdown">
+                    {{--<li class="nav-item nav-dropdown">
                         <a href="#" class="nav-link nav-dropdown-toggle">
                             <i class="icon icon-energy"></i> Loan Mgt<i class="fa fa-caret-left"></i>
                         </a>
@@ -125,7 +125,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li>--}}
 
                     <li class="nav-item nav-dropdown">
                         <a href="#" class="nav-link nav-dropdown-toggle">
