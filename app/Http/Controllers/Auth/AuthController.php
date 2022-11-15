@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\V1\Users\Wallet;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -33,15 +35,23 @@ class AuthController extends Controller
             'password_confirmation'  =>  'required|same:password'
         ]);
 
-        $user = User::create([
-            'name'  =>  $request->username,
-            'fullname'  =>  $request->name,
-            'email'     =>  $request->email,
-            'password'  =>  bcrypt($request->password),
-            'access'    =>  'user',
-        ]);
-        session()->flash('success', 'Congratulations, your account has been successfully created.');
-        return redirect()->to(route('login'));
+        return DB::transaction(function()use($request){
+            $user = User::create([
+                'name'  =>  $request->username,
+                'fullname'  =>  $request->name,
+                'email'     =>  $request->email,
+                'password'  =>  bcrypt($request->password),
+                'access'    =>  'user',
+            ]);
+            //create wallet for user
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
+            //notify admin
+            session()->flash('success', 'Congratulations, your account has been successfully created.');
+            return redirect()->to(route('login'));
+        });
     }
 
     public function storeSession(Request $request)
@@ -112,15 +122,23 @@ class AuthController extends Controller
             'password_confirmation'  =>  'required|same:password'
         ]);
 
-        $user = User::create([
-            'name'  =>  $request->username,
-            'fullname'  =>  $request->name,
-            'email'     =>  $request->email,
-            'password'  =>  bcrypt($request->password),
-            'access'    =>  'channel',
-        ]);
-        session()->flash('success', 'Congratulations, your account has been successfully created.');
-        return redirect()->to(route('channels.login'));
+        return DB::transaction(function()use($request){
+            $user = User::create([
+                'name'  =>  $request->username,
+                'fullname'  =>  $request->name,
+                'email'     =>  $request->email,
+                'password'  =>  bcrypt($request->password),
+                'access'    =>  'channel',
+            ]);
+            //instantiate wallet 
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
+            session()->flash('success', 'Congratulations, your account has been successfully created.');
+            return redirect()->to(route('channels.login'));
+
+        });
     }
 
     public function adminRegisterIndex()
@@ -137,16 +155,23 @@ class AuthController extends Controller
             'password'  =>  'required|string|min:6',
             'password_confirmation'  =>  'required|same:password'
         ]);
-
-        $user = User::create([
-            'name'  =>  $request->username,
-            'fullname'  =>  $request->name,
-            'email'     =>  $request->email,
-            'password'  =>  bcrypt($request->password),
-            'access'    =>  'admin',
-        ]);
-        session()->flash('success', 'Congratulations, your account has been successfully created.');
-        return redirect()->to(route('administrator.index'));
+        return DB::transaction(function()use($request){
+            
+            $user = User::create([
+                'name'  =>  $request->username,
+                'fullname'  =>  $request->name,
+                'email'     =>  $request->email,
+                'password'  =>  bcrypt($request->password),
+                'access'    =>  'admin',
+            ]);
+            //create wallet 
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
+            session()->flash('success', 'Congratulations, your account has been successfully created.');
+            return redirect()->to(route('administrator.index'));
+        });
     }
 
     public function AdminLoginIndex()

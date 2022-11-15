@@ -66,7 +66,7 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
 
     //channels
     Route::get('/panel/channel', [ChannelController::class, 'index'])->name('admin.channels');
-    // Route::post('/panel/channel/create', [ChannelController::class, 'create'])->name('panel.channel.create');
+    Route::post('/panel/channel/channel/create', [ChannelController::class, 'create'])->name('panel.channel.create');
 
 
     // transactions

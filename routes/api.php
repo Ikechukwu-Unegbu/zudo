@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\Api\ApiController;
+use App\Http\Controllers\V1\Api\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,9 @@ Route::group([
 
 });
 
+Route::get('/user/wallet/{id}', [UsersController::class, 'userWalletBal'])->name('wallet.bal');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

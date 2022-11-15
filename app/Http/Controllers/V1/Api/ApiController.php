@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\V1\Admin\Channel;
 use App\Models\V1\Admin\Transaction;
+use App\Models\V1\Users\Wallet;
 use App\Services\SMSService;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
@@ -87,6 +88,11 @@ class ApiController extends Controller
                 'password'  =>  bcrypt($request->password),
                 'access'    =>  'channel',
             ]);
+            //add wallet 
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
 
             $token = $user->createToken('API TOKEN')->plainTextToken;
 
@@ -301,7 +307,11 @@ class ApiController extends Controller
                 'channel_description'   =>  $request->description,
                 'access'     => 'channel'
             ]);
-
+             //add wallet 
+             $wallet = new Wallet();
+             $wallet->balance = 0;
+             $wallet->user_id = $user->id;
+             $wallet->save();
             $token = $user->createToken('API TOKEN')->plainTextToken;
 
             return response()->json([
