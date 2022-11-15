@@ -17,23 +17,23 @@ Login.
 
 4. Deposit/Withdrawal table ready
 
-Login guide
+## Login guide
 
-    User  
+    ### User  
     -Login Url: https://domainname/login 
     -Rgister Url: https://domainname/register 
 
-    Channel
+    ### Channel
     -Login Url: https://domainname/channel/login 
     -Rgister Url: https://domainname/channel/register 
 
-    Admin
+    ### Admin
     -Login Url: https://domainname/admin/login 
     -Rgister Url: https://domainname/admin/register 
 
- Domingo Api Docs
+ # Domingo Api Docs
 
-    To Register an Admin
+   ## To Register an Admin
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/register',
     Method: 'POST',
@@ -85,7 +85,7 @@ Login guide
             }
         }
 
-    To Register A Channel
+    ## To Register A Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/register',
     Method: 'POST',
@@ -138,7 +138,7 @@ Login guide
             }
         }
 
-    To Login as an Admin
+##    To Login as an Admin
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/login',
     Method: 'POST',
@@ -205,7 +205,7 @@ Login guide
             }
         }
 
-    To Logout
+ ##   To Logout
     - Make a post request to this endpoint
     url: 'https://domainname/api/logout'
     Method: 'POST',
@@ -217,7 +217,7 @@ Login guide
         }
 
     
-    Forgot Password
+   ## Forgot Password
     - Make a post request to this endpoint
     url: 'https://domainname/api/forgot-password',
     Headers: 'Accept: application/json',
@@ -242,7 +242,7 @@ Login guide
             }
         }
 
-    To Reset Password
+##    To Reset Password
     - Make a post request to this endpoint
     url: 'https://domainname/api/reset-password',
     Method: 'POST',
@@ -280,7 +280,7 @@ Login guide
             }
         }
 
-    For Admin to Create new Channel
+##    For Admin to Create new Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/channel/create',
     Method: 'POST',
@@ -349,7 +349,7 @@ Login guide
         }
 
 
-    For Admin to Read all Channels
+##    For Admin to Read all Channels
     - Make a get request to this endpoint
     url: 'https://domainname/api/admin/channels',
     Method: 'GET',
@@ -396,7 +396,7 @@ Login guide
             ]
         }
 
-    User Assigned to Channel
+ ##   User Assigned to Channel
     - Make a get request to this endpoint
     url: 'https://domainname/api/channel/user/assign',
     Method: 'GET',
@@ -421,7 +421,7 @@ Login guide
             "deleted_at": null
         }
 
-    For Channel to get Contribution
+   ## For Channel to get Contribution
     - Make a get request to this endpoint
     url: 'https://domainname/api/channel/deposit',
     Method: 'GET',
@@ -444,7 +444,7 @@ Login guide
             "initiated_by": null
         }
     
-    For Channel to create contribution/debit for user Assigned to the channel
+## For Channel to create contribution/debit for user Assigned to the channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/deposit/create',
     Method: 'POST',
