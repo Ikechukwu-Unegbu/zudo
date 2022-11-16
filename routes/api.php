@@ -53,9 +53,12 @@ Route::get('/userinfo/{keyword}/{key}', [UsersController::class, 'userInfoByEmai
 
 Route::get('/user/wallet/{id}', [UsersController::class, 'userWalletBal'])->name('wallet.bal');
 Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelContribution']);
-Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelDebits']);
+Route::get('/transactions/channel/debits/{channelid}', [TransactionsController::class, 'getChannelDebits']);
 
 Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx']);
+
+Route::post('/update/credit/{id}', [TransactionsController::class, 'updateCredit']);
+
 
 
 

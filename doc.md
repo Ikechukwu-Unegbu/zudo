@@ -169,3 +169,22 @@ Total tells you total of everything
     domain.com/api/transactions/channel/debits/{channelid}?start_date={start_date}?end_date={end_date}
 
 #### The response is just same as that of the last endpoint above it.
+
+
+## Update Credit/Contribution trnsaction record 
+
+    Make a POST call to domain.com/api/update/credit/{id}
+        where the {id} parameter is that of the the exact tranction to update
+
+     Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    Body:
+        {
+            "amount": " amount involved in the record",
+            "customer": " customer id - the customer the record belongs to",
+            "purpose":"put a placeholder here eg. updating contribution"
+        }
+
+
+Channels/agents cannot update a record after after 11.59pm that day they entered it.
