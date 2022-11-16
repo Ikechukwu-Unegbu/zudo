@@ -51,113 +51,113 @@
     domain.com/api/transactions/channel/credits/{channelid}?start_date={start_date}?end_date={end_date}
 
 
-{
-    "current_page": 1,
-    "data": [
-        {
-            "id": 221,
-            "customer_id": 9,
-            "agent_id": "22.00",
-            "trx_type": 1,
-            "amount": "900.00",
-            "purpose": "Contribution",
-            "sync": "0",
-            "deleted_at": null,
-            "created_at": "2022-11-16T12:11:12.000000Z",
-            "updated_at": "2022-11-16T12:11:12.000000Z",
-            "approved": 1,
-            "withdraw_type": "cash",
-            "initiated_by": null
-        },
-        {
-            "id": 217,
-            "customer_id": 8,
-            "agent_id": "22.00",
-            "trx_type": 1,
-            "amount": "900.00",
-            "purpose": "Contribution",
-            "sync": "0",
-            "deleted_at": null,
-            "created_at": "2022-11-16T12:11:12.000000Z",
-            "updated_at": "2022-11-16T12:11:12.000000Z",
-            "approved": 1,
-            "withdraw_type": "cash",
-            "initiated_by": null
-        },
-        {
-            "id": 216,
-            "customer_id": 7,
-            "agent_id": "22.00",
-            "trx_type": 1,
-            "amount": "900.00",
-            "purpose": "Contribution",
-            "sync": "0",
-            "deleted_at": null,
-            "created_at": "2022-11-16T12:11:12.000000Z",
-            "updated_at": "2022-11-16T12:11:12.000000Z",
-            "approved": 1,
-            "withdraw_type": "cash",
-            "initiated_by": null
-        },
-        {
-            "id": 215,
-            "customer_id": 7,
-            "agent_id": "22.00",
-            "trx_type": 1,
-            "amount": "900.00",
-            "purpose": "Contribution",
-            "sync": "0",
-            "deleted_at": null,
-            "created_at": "2022-11-16T12:11:12.000000Z",
-            "updated_at": "2022-11-16T12:11:12.000000Z",
-            "approved": 1,
-            "withdraw_type": "cash",
-            "initiated_by": null
-        }
-    ],
-    "first_page_url": "http://localhost:1200/api/transactions/channel/22?page=1",
-    "from": 1,
-    "last_page": 3,
-    "last_page_url": "http://localhost:1200/api/transactions/channel/22?page=3",
-    "links": [
-        {
-            "url": null,
-            "label": "&laquo; Previous",
-            "active": false
-        },
-        {
-            "url": "http://localhost:1200/api/transactions/channel/22?page=1",
-            "label": "1",
-            "active": true
-        },
-        {
-            "url": "http://localhost:1200/api/transactions/channel/22?page=2",
-            "label": "2",
-            "active": false
-        },
-        {
-            "url": "http://localhost:1200/api/transactions/channel/22?page=3",
-            "label": "3",
-            "active": false
-        },
-        {
-            "url": "http://localhost:1200/api/transactions/channel/22?page=2",
-            "label": "Next &raquo;",
-            "active": false
-        }
-    ],
-    "next_page_url": "http://localhost:1200/api/transactions/channel/22?page=2",
-    "path": "http://localhost:1200/api/transactions/channel/22",
-    "per_page": 50,
-    "prev_page_url": null,
-    "to": 50,
-    "total": 120
-}
+    {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 221,
+                "customer_id": 9,
+                "agent_id": "22.00",
+                "trx_type": 1,
+                "amount": "900.00",
+                "purpose": "Contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-16T12:11:12.000000Z",
+                "updated_at": "2022-11-16T12:11:12.000000Z",
+                "approved": 1,
+                "withdraw_type": "cash",
+                "initiated_by": null
+            },
+            {
+                "id": 217,
+                "customer_id": 8,
+                "agent_id": "22.00",
+                "trx_type": 1,
+                "amount": "900.00",
+                "purpose": "Contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-16T12:11:12.000000Z",
+                "updated_at": "2022-11-16T12:11:12.000000Z",
+                "approved": 1,
+                "withdraw_type": "cash",
+                "initiated_by": null
+            },
+            {
+                "id": 216,
+                "customer_id": 7,
+                "agent_id": "22.00",
+                "trx_type": 1,
+                "amount": "900.00",
+                "purpose": "Contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-16T12:11:12.000000Z",
+                "updated_at": "2022-11-16T12:11:12.000000Z",
+                "approved": 1,
+                "withdraw_type": "cash",
+                "initiated_by": null
+            },
+            {
+                "id": 215,
+                "customer_id": 7,
+                "agent_id": "22.00",
+                "trx_type": 1,
+                "amount": "900.00",
+                "purpose": "Contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-16T12:11:12.000000Z",
+                "updated_at": "2022-11-16T12:11:12.000000Z",
+                "approved": 1,
+                "withdraw_type": "cash",
+                "initiated_by": null
+            }
+        ],
+        "first_page_url": "http://localhost:1200/api/transactions/channel/22?page=1",
+        "from": 1,
+        "last_page": 3,
+        "last_page_url": "http://localhost:1200/api/transactions/channel/22?page=3",
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://localhost:1200/api/transactions/channel/22?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": "http://localhost:1200/api/transactions/channel/22?page=2",
+                "label": "2",
+                "active": false
+            },
+            {
+                "url": "http://localhost:1200/api/transactions/channel/22?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "http://localhost:1200/api/transactions/channel/22?page=2",
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "next_page_url": "http://localhost:1200/api/transactions/channel/22?page=2",
+        "path": "http://localhost:1200/api/transactions/channel/22",
+        "per_page": 50,
+        "prev_page_url": null,
+        "to": 50,
+        "total": 120
+    }
 
 ### More Details 
-The response from this endpoint is paginated. per_page tells you number of items per page,
-prev_page_url tells you url of previous page and there is next_page_url
-Total tells you total of everything
+    The response from this endpoint is paginated. per_page tells you number of items per page,
+    prev_page_url tells you url of previous page and there is next_page_url
+    Total tells you total of everything
 
 
 
