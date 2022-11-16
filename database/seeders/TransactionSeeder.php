@@ -17,8 +17,8 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        $agent1 = User::find(2);
-        $agent2 = User::find(3);
+        $agent1 = User::find(5);
+        $agent2 = User::find(22);
         //SEEDING TRANSACTIONS FOR ALL USERS UNDER TWO AGENTS - CONTRIBUTIONS
        foreach($users as $user){
             Transaction::factory()->count(4)->create([
@@ -46,7 +46,7 @@ class TransactionSeeder extends Seeder
                 'customer_id'=>$user->id, 
                 'agent_id'=>$agent2,
                 'amount'=>1200,
-                'trx_type'=>1,
+                'trx_type'=>0,
                 'purpose'=>"Contribution",
                 'approved'=>1,
                 'withdraw_type'=>'transfer'

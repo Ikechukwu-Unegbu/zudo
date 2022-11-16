@@ -134,16 +134,16 @@ class TransactionController extends Controller
         $customer = User::find($customerId);
         //send sms to the user
 
-        $smsService = new SMSService();
-        $message ='';
-        if($request->type == 1){
-            $message = "Your contribution of N".$request->amount." received.";
-        }
-        else{
-            $message = "Your debit of N".$request->amount." is being processed.";
-        }
-        $smsresponse = $smsService->senderSMS($message, $customer->phone, 'Spartan');
-        $smsService->logsms($smsresponse, $trx);
+        // $smsService = new SMSService();
+        // $message ='';
+        // if($request->type == 1){
+        //     $message = "Your contribution of N".$request->amount." received.";
+        // }
+        // else{
+        //     $message = "Your debit of N".$request->amount." is being processed.";
+        // }
+        // $smsresponse = $smsService->senderSMS($message, $customer->phone, 'Spartan');
+        // $smsService->logsms($smsresponse, $trx);
         //send response
        if($request->type == 1){
             Session::flash('success', 'Deposit registered successfully.');

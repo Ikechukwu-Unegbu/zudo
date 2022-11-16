@@ -351,18 +351,18 @@ class ApiController extends Controller
         }
     }
 
-    public function contribution()
-    {
-        if(request()->wantsJson() && auth()->user()->access == 'channel')
-        {
-            $contributions = Transaction::with('customer')->whereAgentId(auth()->user()->id)->orderBy('created_at', 'DESC')->get();
-            return response()->json($contributions);
-        }
-        else
-        {
-            return null;
-        }
-    }
+    // public function contribution()
+    // {
+    //     if(request()->wantsJson() && auth()->user()->access == 'channel')
+    //     {
+    //         $contributions = Transaction::with('customer')->whereAgentId(auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+    //         return response()->json($contributions);
+    //     }
+    //     else
+    //     {
+    //         return null;
+    //     }
+    // }
 
     public function createContribution(Request $request)
     {

@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\V1\Admin\TransactionController;
 use App\Http\Controllers\V1\Api\ApiController;
+use App\Http\Controllers\V1\Api\TransactionsController;
 use App\Http\Controllers\V1\Api\UsersController;
+use Illuminate\Database\Events\TransactionCommitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +48,15 @@ Route::group([
 
 });
 
+
+Route::get('/userinfo/{keyword}/{key}', [UsersController::class, 'userInfoByEmail']);//doesnt need authentication
+
 Route::get('/user/wallet/{id}', [UsersController::class, 'userWalletBal'])->name('wallet.bal');
+Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelContribution']);
+Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelDebits']);
+
+Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx']);
+
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

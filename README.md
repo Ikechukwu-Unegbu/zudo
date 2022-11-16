@@ -294,7 +294,7 @@ Login.
             "mobile": " ",
             "gender": "Male or Female",
             "password": " ",
-            "password_confirmation": " ",
+            "password_confirmation": "",
             "description": " ",
         }
 
