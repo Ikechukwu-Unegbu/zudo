@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\V1\Admin\TransactionController;
+// use App\Http\Controllers\V1\Admin\TransactionController;
 use App\Http\Controllers\V1\Api\ApiController;
+use App\Http\Controllers\V1\Api\RequestController;
 use App\Http\Controllers\V1\Api\TransactionsController;
 use App\Http\Controllers\V1\Api\UsersController;
 use Illuminate\Database\Events\TransactionCommitted;
@@ -58,6 +59,10 @@ Route::get('/transactions/channel/debits/{channelid}', [TransactionsController::
 Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx']);
 
 Route::post('/update/credit/{id}', [TransactionsController::class, 'updateCredit']);
+
+Route::post('/debit/reg/{agentid}', [RequestController::class, 'registerDebit'])->middleware(['auth:sanctum']);
+Route::post('/debit/update/reg/{requestId}/{agentid}', [RequestController::class, 'updateDebitRequest'])->middleware(['auth:sanctum']);
+
 
 
 

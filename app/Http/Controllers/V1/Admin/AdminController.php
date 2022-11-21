@@ -79,7 +79,7 @@ class AdminController extends Controller
     }
 
     public function requests(){
-        $requests = ModelRequest::paginate(20);
+        $requests = ModelRequest::orderBy('id', 'desc')->paginate(20);
         return view('admin.requests.index')->with('requests', $requests);
     }
 

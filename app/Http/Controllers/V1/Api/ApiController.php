@@ -157,8 +157,8 @@ class ApiController extends Controller
 
     public function ChannelLogin(Request $request)
     {
-        if ($request->wantsJson())
-        {
+        // var_dump($request->all());die;
+        
             $validator = Validator::make($request->all(), [
                 'email'     =>  'required|email',
                 'password'  =>  'required|string',
@@ -180,8 +180,8 @@ class ApiController extends Controller
             }
 
             $user = $request->user();
-            if ($user->access == 'channel')
-            {
+            if ($user->access == 'channel'){
+
                 $token = $user->createToken('API TOKEN')->plainTextToken;
                 return response()->json([
                     'status' => true,
@@ -195,12 +195,7 @@ class ApiController extends Controller
             return response()->json([
                 'message'   =>  "You are not authorized to access the page!"
             ]);
-        }
-        else
-        {
-            return null;
-        }
-
+      
     }
 
     public function forgotPassword(Request $request)

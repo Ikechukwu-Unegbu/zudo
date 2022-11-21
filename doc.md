@@ -1,5 +1,6 @@
 # More On The endpoints
 
+
 ## Get User info by email - requires no authentication
 
      Make a get call to the url domain.com/api/userinfo/{keyword}/{key}
@@ -7,7 +8,11 @@
      determin if they are admin or channel
 
      NB: if you are searching with email set {keyword} to "email", if you are searching 
-     with id set {key} to "id"
+     with id set {keyword} to "id"
+
+     Where the key is the value.
+
+
 
     valid response should look like
 
@@ -34,8 +39,9 @@
 
 
 ## Get User(contributor, channel, admin) Wallet balance
-    Just make a GET api call to domain.com/api/user/wallet/{id}
-    Where the {id} parameter is user's ID or primary key value 
+    Just make a GET api call to 
+    domain.com/api/user/wallet/{id} Where the {id} parameter is user's ID or primary key value 
+
     Response :
     {
         "id": 2,
@@ -44,6 +50,94 @@
         "created_at": "2022-10-12T13:56:47.000000Z",
         "updated_at": "2022-10-12T13:56:47.000000Z"
     }
+
+
+## Enter Debit/Withdrawal Request 
+
+    Make a POST request to domain.com/api/debit/reg/{agentid}
+    where {agentid} is the id of the agent making the request.
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+
+    {
+        "amount":"3400",
+        "customer":"22",
+        "method":"cash",
+        "purpose":"not a must"
+    }
+    NB: when the agent enters "customer" value - make a call to get the name of this customer and display his name or "not found"
+
+#### Success response
+    You will get back the full details of what you entered if everything went fine
+    {
+        "amount": "3400",
+        "customer_id": "22",
+        "approved": 0,
+        "staff_id": "24",
+        "updated_at": "2022-11-21T14:01:03.000000Z",
+        "created_at": "2022-11-21T14:01:03.000000Z",
+        "id": 94
+    }
+
+#### Error responses 
+    1. Assuming  there is a missing field then you will get a respons like:
+    {
+        "status": false,
+        "message": "validation error",
+        "errors": {
+            "method": [
+                "The method field is required."
+            ]
+        }
+    }
+
+
+
+## Updating Debit/Withdrawal Request
+
+    To update a debit request that have not been approved, make a POST request to domain.com/api/debit/update/reg/{requestId}/{agentid}
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+
+     {
+        "amount":"3400",
+        "customer":"22",
+        "method":"cash",
+        "purpose":"not a must"
+    }
+    NB: when the agent enters "customer" value - make a call to get the name of this customer and display his name or "not found"
+
+### Success Response 
+    {
+        "id": 94,
+        "amount": "5200",
+        "type": "transfer",
+        "approved": 0,
+        "customer_id": "22",
+        "description": null,
+        "staff_id": "24",
+        "created_at": "2022-11-21T14:01:03.000000Z",
+        "updated_at": "2022-11-21T14:40:00.000000Z"
+    }
+
+#### Error responses 
+    1. Assuming  there is a missing field then you will get a respons like:
+    {
+        "status": false,
+        "message": "validation error",
+        "errors": {
+            "method": [
+                "The xyz field is required."
+            ]
+        }
+    }
+
+
+
+
+
 
 ## (a) Get channel credits/contributions (b) get channel credits between two dates
 

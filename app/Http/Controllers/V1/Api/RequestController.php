@@ -14,9 +14,11 @@ class RequestController extends Controller
 {
     public function registerDebit(Request $request, $agent){
         //validation 
+        // var_dump($request->all());die;
         $validator = Validator::make($request->all(), [
             'amount'=>'required|string', 
-            'customer'=>'required|string'
+            'customer'=>'required|string',
+            'method'=>'required|string'
         ]);
 
         if($validator->fails()){
@@ -28,7 +30,7 @@ class RequestController extends Controller
         }
         $requetModel = new PublicRequest();
         $requetModel->amount = $request->amount;
-        // $requetModel->type = $request->type;
+        $requetModel->type = $request->method;
         $requetModel->customer_id = $request->customer;
         $requetModel->approved = 0;
         $requetModel->staff_id = $agent;
@@ -37,13 +39,36 @@ class RequestController extends Controller
         $admin = User::where('access','!=', 'users')->get();
         Notification::sendNow($admin, new TellAdminAboutWithdrawalRequest($requetModel,  User::find($request->customer)));
 
-        return response()->json($request);
+        return response()->json($requetModel);
     }
 
 
-    
+ 
 
-    public function updateDebitRequest(Request $request, $requestID){
-        
+    public function updateDebitRequest(Request $request, $requestID, $agent){
+        $validator = Validator::make($request->all(), [
+            'amount'=>'required|string', 
+            'customer'=>'required|string',
+            'method'=>'required|string'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'validation error',
+                'errors' => $validator->errors()
+            ], 401);
+        }
+        $requestModel = PublicRequest::where('id',$requestID)->where('staff_id', $agent)->first();
+        $requestModel->amount = $request->amount;
+        $requestModel->type = $request->method;
+        $requestModel->customer_id = $request->customer;
+        $requestModel->approved = 0;
+        $requestModel->staff_id = $agent;
+        $requestModel->save();
+
+        return response()->json($requestModel);
     }
+
+
+
 }
