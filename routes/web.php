@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\Admin\AdminController;
 use App\Http\Controllers\V1\General\NotificationController;
 use App\Http\Controllers\V1\Public\PagesController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::get('/services', [PagesController::class, 'services'])->name('services');
 Route::get('/faq',[PagesController::class, 'faq'] )->name('faq');
 
 Route::get('/user/{userid}/notification', [NotificationController::class, 'userNotification'])->name('user.nofitication')->middleware(['auth']);
+
+// Route::get('/sing')p
 
 
 

@@ -136,8 +136,102 @@
 
 
 
+## Admin Approving Withdrawal/Debit Request
+    *When channel register that a user want to withdraw, it enters in a "request table" where it awaits admin approval. When Admin approve it enters into transaction table as debit.*
+
+    
+
+## Channel Adding Credit/Contribution
+    Make a POST request to domain.com/api/credit/post/{agent_id}
+    where {agentid} is the id of the agent making the request.
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+
+    {
+        "amount":"2000", 
+        "customer":"2", 
+        "purpose":"optional"
+    }
+
+#### Missing Input Response
+
+    {
+        "status": false,
+        "message": "validation error",
+        "errors": {
+            "customer": [
+                "The customer field is required."
+            ]
+        }
+    }   
+
+#### Success response 
+    {
+        "amount": "5000",
+        "customer_id": 22,
+        "agent_id": 24,
+        "purpose": "Contribution",
+        "trx_type": 1,
+        "updated_at": "2022-11-23T12:32:11.000000Z",
+        "created_at": "2022-11-23T12:32:11.000000Z",
+        "id": 268
+    }
 
 
+
+## Updating Contribution/Credit Record 
+    Make a POST request to domain.com/api/update/credit/{cred_id}/{channel_id}
+    where {channel_id} is the id of the agent/channel making the request
+    and {cred_id} is the record ID.
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+
+    {
+        "amount":"2000", 
+        "customer":"2", 
+        "purpose":"optional"
+    }
+
+#### Missing input error response 
+      {
+        "status": false,
+        "message": "validation error",
+        "errors": {
+            "customer": [
+                "The customer field is required."
+            ]
+        }
+    }   
+#### Success Response 
+    It return both the edited credit record and wallet balance
+    {
+        "credit": {
+            "id": 268,
+            "customer_id": "22",
+            "agent_id": "24.00",
+            "trx_type": 1,
+            "amount": "1000",
+            "purpose": "purpose",
+            "sync": "0",
+            "deleted_at": null,
+            "created_at": "2022-11-23T12:32:11.000000Z",
+            "updated_at": "2022-11-23T13:37:23.000000Z",
+            "approved": 0,
+            "withdraw_type": null,
+            "initiated_by": null
+        },
+        "wallet": {
+            "id": 18,
+            "user_id": 22,
+            "balance": 58000,
+            "created_at": "2022-10-12T13:56:48.000000Z",
+            "updated_at": "2022-11-23T13:37:22.000000Z"
+        }
+    }
+
+    
 
 ## (a) Get channel credits/contributions (b) get channel credits between two dates
 

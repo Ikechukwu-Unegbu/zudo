@@ -27,16 +27,17 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
 
     Route::get('/panel/customers', [AdminController::class, 'customers'])->name('admin.customers');
     Route::get('/panel/customer/search', [SearchController::class, 'customerSearch'])->name('admin.customer.search');
-    Route::get('/panel/user/show/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
-    // Route::get('/panel/user/show/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
+   
+    
 
     //user details
+    
+    Route::get('/panel/single/{userid}', [AdminController::class, 'showUser'])->name('admin.user.show');
     Route::post('/panel/bank/update/{userid}/{bankid}', [UserController::class, 'updateBank'])->name('panel.bank.update')->middleware(['admin_only']);
     Route::post('/panel/bank/new/{userid}', [UserController::class, 'newBank'])->name('panel.bank.new');
     Route::post('/panel/kin/add/{userid}', [UserController::class, 'newKin'])->name('panel.kin.add');
     Route::post('/panel/kin/edit/{userid}/{kinid}', [UserController::class, 'updateKin'])->name('panel.kin.update')->middleware(['admin_only']);
-
-
+   
     Route::post('/panel/channel/create', [AdminController::class, 'channelCreate'])->name('channel.channel.create');
     Route::get('/panel/agents/deactivate/{id}', [AdminController::class, 'deactivateAgent'])->name('admin.agents.deactivate')->middleware('admin_only');
     Route::get('/panel/notificaion', [NotificationController::class, 'index'])->name('nofitication');

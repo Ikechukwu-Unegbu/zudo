@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\V1\Admin\Transaction;
 use App\Models\V1\Public\Request as PublicRequest;
+use App\Models\V1\Users\Wallet;
 use App\Notifications\TellAdminAboutWithdrawalRequest;
 use App\Services\SMSService;
 use Illuminate\Http\Request;
@@ -101,18 +102,26 @@ class TransactionController extends Controller
             'customer'=>'required|string'
         ]);
 
-        $agent = User::find(Auth::user()->id);
-        $customer = User::findOrFail($request->customer);
-        $trx = new Transaction();
-        $trx->amount =$request->input('amount');
-        $trx->customer_id = $customer->id;
-        $trx->agent_id = $agent->id;
-        $trx->purpose = $request->input('purpose', 'Contribution');
-        $trx->trx_type = 1;
-        $trx->save();
+        return DB::transaction(function()use($request){
+            $agent = User::find(Auth::user()->id);
+            $customer = User::findOrFail($request->customer);
+            $trx = new Transaction();
+            $trx->amount =$request->input('amount');
+            $trx->customer_id = $customer->id;
+            $trx->agent_id = $agent->id;
+            $trx->purpose = $request->input('purpose', 'Contribution');
+            $trx->trx_type = 1;
+            $trx->save();
 
-        Session::flash('success', 'Deposit registered successfully for '.$customer->name);
-        return redirect()->back();
+            //add to user wallet
+
+            $wallet = Wallet::where('user_id', $customer->id)->first();
+            $wallet->balance = (float)$wallet->balance + (float)$request->amount;
+            $wallet->save();
+            Session::flash('success', 'Deposit registered successfully for '.$customer->name);
+            return redirect()->back();
+        });
+
     }
 
     public function store(Request $request, $customerId){
@@ -132,19 +141,10 @@ class TransactionController extends Controller
         $trx->trx_type = $request->type;
         $trx->save();
         $customer = User::find($customerId);
-        //send sms to the user
-
-        // $smsService = new SMSService();
-        // $message ='';
-        // if($request->type == 1){
-        //     $message = "Your contribution of N".$request->amount." received.";
-        // }
-        // else{
-        //     $message = "Your debit of N".$request->amount." is being processed.";
-        // }
-        // $smsresponse = $smsService->senderSMS($message, $customer->phone, 'Spartan');
-        // $smsService->logsms($smsresponse, $trx);
-        //send response
+       
+        $wallet = Wallet::where('user_id', $customer->id)->first();
+        $wallet->balance = (float)$wallet->balance + (float)$request->amount;
+        $wallet->save();
        if($request->type == 1){
             Session::flash('success', 'Deposit registered successfully.');
             return redirect()->route('admin.customer.deposit');

@@ -18,8 +18,8 @@
             </div>
             <div class="form-group">
             <select class="custom-select" name="type" id="inputGroupSelect01">
-                <!-- <option selected value="1">Deposite</option> -->
-                <option value="0">Withdraw</option>
+                <option selected value="1">Deposite</option>
+                <!-- <option value="0">Withdraw</option> -->
             </select>
             </div>
            

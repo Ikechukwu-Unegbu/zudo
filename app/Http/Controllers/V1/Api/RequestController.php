@@ -4,9 +4,12 @@ namespace App\Http\Controllers\V1\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\V1\Admin\Transaction;
 use App\Models\V1\Public\Request as PublicRequest;
+use App\Models\V1\Users\Wallet;
 use App\Notifications\TellAdminAboutWithdrawalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,6 +31,7 @@ class RequestController extends Controller
                 'errors' => $validator->errors()
             ], 401);
         }
+        
         $requetModel = new PublicRequest();
         $requetModel->amount = $request->amount;
         $requetModel->type = $request->method;
@@ -69,6 +73,35 @@ class RequestController extends Controller
         return response()->json($requestModel);
     }
 
+
+    public function approveByAdmin($requestId, $adminId){
+        return DB::transaction(function() use($requestId, $adminId) {
+                $request = PublicRequest::findOrFail($requestId);
+                $trx = new Transaction();
+                $agentId = 0;
+                $purpose = "debit - processed from request. Approved by admin";
+                if($request->staff_id != null) $agentId = $request->staff_id;
+                if($request->description != null) $purpose = $request->description;
+                $trx->customer_id = $request->customer_id;
+                $trx->agent_id = $adminId;
+                $trx->trx_type = 0;
+                $trx->purpose = $purpose;
+                $trx->amount = $request->amount;
+                $trx->approved = 1;
+                $trx->withdraw_type = $request->type;
+                $trx->save();
+
+                $request->approved = 1;
+                $request->save();
+
+                  //deduct from user wallet
+                $wallet = Wallet::where('user_id', $request->customer_id)->first();
+                $wallet->balance = (float)$wallet->balance - (float)$request->amount;
+                $wallet->save();
+
+                return response()->json($trx);
+        });
+    }
 
 
 }

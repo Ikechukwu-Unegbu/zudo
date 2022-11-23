@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\V1\Public\Request as ModelRequest;
 use App\Models\V1\Users\Bankaccount;
+use App\Models\V1\Users\Wallet;
 use App\Services\FileUploadService;
 use Illuminate\Support\Facades\DB;
 
@@ -193,13 +194,16 @@ class AdminController extends Controller
     }
 
     public function showUser($userid){
+        // var_dump($userid);die;
         $user = User::find($userid);
         $bankinfo = Bankaccount::where('user_id', $userid)->get();
         $kins = Kin::where('user_id', $userid)->get();
         $channels = User::where('access', 'channels')->get();
+        $wallet = Wallet::where('user_id', $user->id)->first();
 
         return view('admin.user.show')->with('user', $user)->with('bankacc', $bankinfo)
                                         ->with('kins', $kins)
+                                        ->with('wallet', $wallet)
                                         ->with('channels', $channels);
     }
 
@@ -238,6 +242,11 @@ class AdminController extends Controller
 
             $request->approved = 1;
             $request->save();
+
+            //deduct from user wallet
+            $wallet = Wallet::where('user_id', $request->customer_id)->first();
+            $wallet->balance = (float)$wallet->balance - (float)$request->amount;
+            $wallet->save();
         });
         Session::flash('success', 'Resolved and moved to transaction.');
         return redirect()->route('admin.customer.withdrawal');
