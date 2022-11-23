@@ -26,6 +26,7 @@ Route::middleware(['auth', 'agent_or_admin'])->group(function () {
     Route::get('/panel/request/pop/{id}', [AdminController::class, 'popOut'])->name('admin.requests.pop')->middleware(['admin_only']);
 
     Route::get('/panel/customers', [AdminController::class, 'customers'])->name('admin.customers');
+    Route::get('panel/customers_by_channel',  [AdminController::class, 'customers'])->name('customers.by.channel');
     Route::get('/panel/customer/search', [SearchController::class, 'customerSearch'])->name('admin.customer.search');
    
     

@@ -90,6 +90,13 @@ class AdminController extends Controller
     }
 
     public function customers(){
+        if(request()->input('channel_id')!=null){
+            // var_dump('by channel');die;
+            $customers = User::orderBy('id', 'desc')->where('channel_id', request()->input('channel_id'))->paginate(20);
+            $channels = User::whereAccess('channel')->get();
+    
+            return view('admin.customers.customers', compact('channels'))->with('customers', $customers);
+        }
         $customers = User::orderBy('id', 'desc')->paginate(20);
         $channels = User::whereAccess('channel')->get();
 
@@ -174,7 +181,11 @@ class AdminController extends Controller
             $user->channel_description  = $request->description;
             $user->save();
            
-
+            //add wallet
+            $wallet = new Wallet();
+            $wallet->user_id = $user->id;
+            $wallet->balance = 0;
+            $wallet->save();
             //image upload -- next of kin document
             if($request->hasFile('user_dp')) {
                 $uploadInstance = new FileUploadService();
