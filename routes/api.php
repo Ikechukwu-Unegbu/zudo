@@ -68,6 +68,12 @@ Route::get('/approve/debit/{requestID}', [RequestController::class, 'approveByAd
 
 
 
+// users 
+
+Route::get('/users/{channel_id}', [UsersController::class, 'usersByChannel'])->middleware(['auth:sanctum']);
+
+Route::get('/search/user/{view_id}', [UsersController::class, 'searchUser'])->middleware(['auth:sanctum']);
+
 
 
 

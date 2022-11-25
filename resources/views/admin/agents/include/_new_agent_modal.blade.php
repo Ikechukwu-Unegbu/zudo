@@ -56,9 +56,17 @@
                 <label for="" class="form-label">Select a Channel <span>*</span></label>
                     <select class="custom-select" name="channel">
                       <option selected>Open this select menu</option>
+                       @if(Auth::user()->access == 'admin')
                         @foreach($channels as $channel)
                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                         @endforeach
+                       @else 
+                       @foreach($channels as $channel)
+                            @if(Auth::user()->id == $channel->id)
+                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                            @endif
+                        @endforeach
+                       @endif
                     </select>
             </div>
             <div class="form-group">

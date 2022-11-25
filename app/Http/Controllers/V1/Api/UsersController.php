@@ -26,4 +26,33 @@ class UsersController extends Controller
         }  
    }
 
+   public function usersByChannel($viewer_id){
+        $viewer = User::find($viewer_id);
+        if($viewer->access == 'channel'){
+            $users = User::where('channel_id', $viewer->id)->orderBy('id', 'desc')->paginate(20);
+            return response()->json($users);
+        }elseif($viewer->access == 'admin'){
+            $users = User::orderBy('id', 'desc')->paginate(20);
+            return response()->json($users);
+        }
+   }
+
+
+   public function searchUser(Request $request, $viewer_id){
+
+        if($request->keyword !== null){
+            $result = User::where('name','LIKE','%'.$request->keyword.'%')
+                ->orWhere('fullname','LIKE','%'.$request->keyword.'%')
+                ->get();
+            return response()->json($result); 
+        } 
+        else{
+            if($request->keyid != null){
+                $result = User::where('id', (int)$request->keyid)->get();
+                return response()->json($result); 
+            }
+        }
+   }
+
+
 }
