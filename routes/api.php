@@ -60,16 +60,17 @@ Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx']);
 
 Route::post('/credit/post/{agent_id}', [TransactionsController::class, 'registerCredit']);
 Route::post('/update/credit/{cred_id}/{channel_id}', [TransactionsController::class, 'updateCredit']);
-
+//debit
 Route::post('/debit/reg/{agentid}', [RequestController::class, 'registerDebit'])->middleware(['auth:sanctum']);
 Route::post('/debit/update/reg/{requestId}/{agentid}', [RequestController::class, 'updateDebitRequest'])->middleware(['auth:sanctum']);
+Route::get('/pending_debits', [RequestController::class, 'getRequests'])->middleware(['auth:sanctum']);
+
 
 Route::get('/approve/debit/{requestID}', [RequestController::class, 'approveByAdmin'])->middleware(['auth:sanctum']);
 
 
 
 // users 
-
 Route::get('/users/{channel_id}', [UsersController::class, 'usersByChannel'])->middleware(['auth:sanctum']);
 
 Route::get('/search/user/{view_id}', [UsersController::class, 'searchUser'])->middleware(['auth:sanctum']);

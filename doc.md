@@ -35,7 +35,6 @@
     }
 
 
-## Get user info by User ID
 
 
 ## Get User(contributor, channel, admin) Wallet balance
@@ -136,8 +135,122 @@
 
 
 
+## Get all Debit Requests awaiting approval
+       Method: 'GET',
+        Headers: 'Accept: application/json',
+        Headers: 'Authorization: Bearer --Token',
+        URL: domain.com/api/pending_debits
+        But to get pending debit requests by a particular channel go to domain.com/api/pending_debits?channel_id={channel_id}
+        
+
+#### Response looks like below - laravel pagination 
+    {
+    "current_page": 1,
+    "data": [
+        
+        {
+            "id": 91,
+            "amount": "1400.00",
+            "type": "cash",
+            "approved": 1,
+            "customer_id": 8,
+            "description": null,
+            "staff_id": "2",
+            "created_at": "2022-11-25T12:19:36.000000Z",
+            "updated_at": "2022-11-25T12:19:36.000000Z"
+        },
+        {
+            "id": 90,
+            "amount": "1400.00",
+            "type": "cash",
+            "approved": 1,
+            "customer_id": 8,
+            "description": null,
+            "staff_id": "2",
+            "created_at": "2022-11-25T12:19:36.000000Z",
+            "updated_at": "2022-11-25T12:19:36.000000Z"
+        },
+        {
+            "id": 89,
+            "amount": "1400.00",
+            "type": "cash",
+            "approved": 1,
+            "customer_id": 7,
+            "description": null,
+            "staff_id": "2",
+            "created_at": "2022-11-25T12:19:35.000000Z",
+            "updated_at": "2022-11-25T12:19:35.000000Z"
+        },
+        {
+            "id": 88,
+            "amount": "1400.00",
+            "type": "cash",
+            "approved": 1,
+            "customer_id": 7,
+            "description": null,
+            "staff_id": "2",
+            "created_at": "2022-11-25T12:19:35.000000Z",
+            "updated_at": "2022-11-25T12:19:35.000000Z"
+        }
+    ],
+    "first_page_url": "http://localhost:9600/api/pending_debits?page=1",
+    "from": 1,
+    "last_page": 6,
+    "last_page_url": "http://localhost:9600/api/pending_debits?page=6",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=2",
+            "label": "2",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=3",
+            "label": "3",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=4",
+            "label": "4",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=5",
+            "label": "5",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=6",
+            "label": "6",
+            "active": false
+        },
+        {
+            "url": "http://localhost:9600/api/pending_debits?page=2",
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": "http://localhost:9600/api/pending_debits?page=2",
+    "path": "http://localhost:9600/api/pending_debits",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 20,
+    "total": 107
+    }
+
+
 ## Admin Approving Withdrawal/Debit Request
     *When channel register that a user want to withdraw, it enters in a "request table" where it awaits admin approval. When Admin approve it enters into transaction table as debit.*
+
 
     
 
@@ -351,12 +464,6 @@
 
 
 
-## (a) Get channel debits (b) get channel debits between two dates
-
-    Make a GET API request to domain.com/api/transactions/channel/{channelid}
-    domain.com/api/transactions/channel/debits/{channelid}?start_date={start_date}?end_date={end_date}
-
-#### The response is just same as that of the last endpoint above it.
 
 
 ## Update Credit/Contribution trnsaction record 

@@ -103,5 +103,15 @@ class RequestController extends Controller
         });
     }
 
+    public function getRequests(){
+        if(request()->input('channel_id') == null){
+            $reqs = PublicRequest::orderBy('id', 'desc')->paginate(20);
+            return response()->json($reqs);     
+        }
+        $reqs = PublicRequest::orderBy('id', 'desc')->where('staff_id', request()->input('channel_id'))->paginate(20);
+        return response()->json($reqs);
+       
+    }
+
 
 }
