@@ -110,3 +110,83 @@
         "total": 0
     }
 
+
+
+## Searching User
+    When a channel search user, the search is "channel", only users under him will be searched
+    When the person is "admin" all users will be searched. Backend takes care of determining who is searching
+
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    URL: domain.com/api/search/user/{view_id}
+
+    {view_id} is placeholder for channel or admin id
+
+    {
+        "keyword":"name to search", 
+        "keyid":"user ID"
+    }   
+
+    Only one of the above variable should be searched with.
+
+
+#### Response When you search with id 
+    [
+        {
+            "id": 3,
+            "name": "Marlee Rice",
+            "email": "user@user.com",
+            "email_verified_at": "2022-11-25T06:55:02.000000Z",
+            "created_at": "2022-11-25T06:55:02.000000Z",
+            "updated_at": "2022-11-25T07:51:14.000000Z",
+            "channel_id": 2,
+            "gender": null,
+            "phone": "(727) 577-8433",
+            "bvn": null,
+            "avatar": null,
+            "fullname": null,
+            "channel_description": null,
+            "access": "channel",
+            "deleted_at": null
+        }
+    ]
+
+#### Response When you search with keyword
+
+    [
+        {
+            "id": 9,
+            "name": "Mrs. Maude Ondricka",
+            "email": "lynch.francesco@example.net",
+            "email_verified_at": "2022-11-25T06:55:03.000000Z",
+            "created_at": "2022-11-25T06:55:03.000000Z",
+            "updated_at": "2022-11-25T07:51:14.000000Z",
+            "channel_id": 2,
+            "gender": null,
+            "phone": "1-463-398-4206",
+            "bvn": null,
+            "avatar": null,
+            "fullname": null,
+            "channel_description": null,
+            "access": "user",
+            "deleted_at": null
+        },
+        {
+            "id": 13,
+            "name": "Mr. Nicola Gaylord DVM",
+            "email": "hschoen@example.org",
+            "email_verified_at": "2022-11-25T06:55:03.000000Z",
+            "created_at": "2022-11-25T06:55:03.000000Z",
+            "updated_at": "2022-11-25T07:51:15.000000Z",
+            "channel_id": 16,
+            "gender": null,
+            "phone": "+1-916-838-7367",
+            "bvn": null,
+            "avatar": null,
+            "fullname": null,
+            "channel_description": null,
+            "access": "user",
+            "deleted_at": null
+        }
+    ]
