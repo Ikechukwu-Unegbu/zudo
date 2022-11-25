@@ -17,8 +17,8 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        $agent1 = User::where('access', 'channel')->first();
-        // $agent2 = User::find(22);
+        $agent1 = User::find(3);
+        $agent2 = User::find(2);
         //SEEDING TRANSACTIONS FOR ALL USERS UNDER TWO AGENTS - CONTRIBUTIONS
        foreach($users as $user){
             Transaction::factory()->count(4)->create([
@@ -29,40 +29,40 @@ class TransactionSeeder extends Seeder
                 'purpose'=>"contribution"
             ]);
        }
-    //    foreach($users as $user){
-    //     Transaction::factory()->count(3)->create([
-    //         'customer_id'=>$user->id, 
-    //         'agent_id'=>$agent2,
-    //         'amount'=>4500,
-    //         'trx_type'=>1,
-    //         'purpose'=>"contribution"
-    //         ]);
-    //     }
+       foreach($users as $user){
+        Transaction::factory()->count(3)->create([
+            'customer_id'=>$user->id, 
+            'agent_id'=>$agent2,
+            'amount'=>4500,
+            'trx_type'=>1,
+            'purpose'=>"contribution"
+            ]);
+        }
 
 
         //SEEDING WITHDRAWAL TRANSACTIONS
-        // foreach($users as $user){
-        //     Transaction::factory()->count(3)->create([
-        //         'customer_id'=>$user->id, 
-        //         'agent_id'=>$agent2,
-        //         'amount'=>1200,
-        //         'trx_type'=>0,
-        //         'purpose'=>"Contribution",
-        //         'approved'=>1,
-        //         'withdraw_type'=>'transfer'
-        //     ]);
-        // }
+        foreach($users as $user){
+            Transaction::factory()->count(3)->create([
+                'customer_id'=>$user->id, 
+                'agent_id'=>$agent2,
+                'amount'=>1200,
+                'trx_type'=>0,
+                'purpose'=>"Contribution",
+                'approved'=>1,
+                'withdraw_type'=>'transfer'
+            ]);
+        }
 
-    //     foreach($users as $user){
-    //         Transaction::factory()->count(3)->create([
-    //             'customer_id'=>$user->id, 
-    //             'agent_id'=>$agent2,
-    //             'amount'=>900,
-    //             'trx_type'=>1,
-    //             'purpose'=>"Contribution",
-    //             'approved'=>1,
-    //             'withdraw_type'=>'cash'
-    //             ]);
-    //     }
-    // }
+        foreach($users as $user){
+            Transaction::factory()->count(3)->create([
+                'customer_id'=>$user->id, 
+                'agent_id'=>$agent2,
+                'amount'=>900,
+                'trx_type'=>1,
+                'purpose'=>"Contribution",
+                'approved'=>1,
+                'withdraw_type'=>'cash'
+                ]);
+        }
+    }
 }
