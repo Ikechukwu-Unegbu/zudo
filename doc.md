@@ -251,8 +251,44 @@
 ## Admin Approving Withdrawal/Debit Request
     *When channel register that a user want to withdraw, it enters in a "request table" where it awaits admin approval. When Admin approve it enters into transaction table as debit.*
 
+    METHOD: GET
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    url: /approve/debit/{requestID}/{admin_id}
+
+#### Failure response
+    {
+        "status": false,
+        "message": "You dont have access to do this."
+    }
+
+#### Success Response 
+    Returns the debit record and user new wallet balance
+    {
+        "debit": {
+            "customer_id": 4,
+            "agent_id": "1\n",
+            "trx_type": 0,
+            "purpose": "debit - processed from request. Approved by admin",
+            "amount": "1400.00",
+            "approved": 1,
+            "withdraw_type": "cash",
+            "updated_at": "2022-11-25T15:30:53.000000Z",
+            "created_at": "2022-11-25T15:30:53.000000Z",
+            "id": 89
+        },
+        "wallet": {
+            "id": 4,
+            "user_id": 4,
+            "balance": 9100,
+            "created_at": "2022-11-25T13:57:26.000000Z",
+            "updated_at": "2022-11-25T15:30:53.000000Z"
+        }
+    }
 
     
+
+
 
 ## Channel Adding Credit/Contribution
     Make a POST request to domain.com/api/credit/post/{agent_id}

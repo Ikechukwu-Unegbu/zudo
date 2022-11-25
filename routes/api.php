@@ -66,13 +66,12 @@ Route::post('/debit/update/reg/{requestId}/{agentid}', [RequestController::class
 Route::get('/pending_debits', [RequestController::class, 'getRequests'])->middleware(['auth:sanctum']);
 
 
-Route::get('/approve/debit/{requestID}', [RequestController::class, 'approveByAdmin'])->middleware(['auth:sanctum']);
+Route::get('/approve/debit/{requestID}/{admin_id}', [RequestController::class, 'approveByAdmin'])->middleware(['auth:sanctum']);
 
 
 
 // users 
 Route::get('/users/{channel_id}', [UsersController::class, 'usersByChannel'])->middleware(['auth:sanctum']);
-
 Route::get('/search/user/{view_id}', [UsersController::class, 'searchUser'])->middleware(['auth:sanctum']);
 
 

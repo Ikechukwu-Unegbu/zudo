@@ -24,7 +24,7 @@ class RequestSeeder extends Seeder
                 'amount'=>1400,
                 'customer_id'=>$user->id, 
                 'type'=>'cash',
-                'approved'=>1,
+                'approved'=>0,
                 'staff_id'=>$channel1->id,
             ]);
         }
@@ -33,7 +33,7 @@ class RequestSeeder extends Seeder
                 'amount'=>1400,
                 'customer_id'=>$user->id, 
                 'type'=>'cash',
-                'approved'=>1,
+                'approved'=>0,
                 'staff_id'=>$channel2->id,
             ]);
         }

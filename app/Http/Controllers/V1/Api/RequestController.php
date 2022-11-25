@@ -76,6 +76,16 @@ class RequestController extends Controller
 
     public function approveByAdmin($requestId, $adminId){
         return DB::transaction(function() use($requestId, $adminId) {
+                $admin = User::find($adminId);
+                if($admin->access != 'admin'){
+                   
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'You dont have access to do this.',
+                            // 'errors' => $validator->errors()
+                        ], 401);
+                   
+                }
                 $request = PublicRequest::findOrFail($requestId);
                 $trx = new Transaction();
                 $agentId = 0;
@@ -99,7 +109,12 @@ class RequestController extends Controller
                 $wallet->balance = (float)$wallet->balance - (float)$request->amount;
                 $wallet->save();
 
-                return response()->json($trx);
+                return response()->json(
+                    [
+                        'debit'=>$trx,
+                        'wallet'=>$wallet
+                    ]
+                );
         });
     }
 
