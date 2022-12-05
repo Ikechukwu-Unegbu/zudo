@@ -17,7 +17,7 @@ Login.
 
 4. Deposit/Withdrawal table ready
 
-## Login guide
+## WEBSITE Login guide
 
     ### User  
     -Login Url: https://domainname/login 
@@ -31,7 +31,7 @@ Login.
     -Login Url: https://domainname/admin/login 
     -Rgister Url: https://domainname/admin/register 
 
- # Domingo Api Docs
+ # Zudovest Api Docs
 
    ## To Register an Admin
     - Make a post request to this endpoint
@@ -172,7 +172,7 @@ Login.
             }
         }
 
-    To Login as a Channel
+## To Login as a Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/login',
     Headers: 'Accept: application/json',
@@ -182,7 +182,7 @@ Login.
             "password": " ",
         }
     
-    Success Response:
+####    Success Response:
         {
             "status": true,
             "message": "User Logged In Successfully",
@@ -191,7 +191,7 @@ Login.
             "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
         }
         
-    Validation Response:
+####    Validation Response:
         {
             "status": false,
             "message": "validation error",
