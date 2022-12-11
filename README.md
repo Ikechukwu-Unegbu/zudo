@@ -155,7 +155,12 @@ Login.
         "message": "User Logged In Successfully",
         "username": "Emmanuel",
         "access": "admin",
-        "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+        "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL",
+        "user":{
+            "id":"",
+            user info
+
+        }
     }
 
     Validation Response:
@@ -188,7 +193,12 @@ Login.
             "message": "User Logged In Successfully",
             "username": "Emmanuel",
             "access": "channel",
-            "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+            "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL",
+            "user":{
+                "id":"",
+                user info
+
+            }
         }
         
 ####    Validation Response:

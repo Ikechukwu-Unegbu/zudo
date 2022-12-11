@@ -141,6 +141,8 @@ class ApiController extends Controller
                     'username'  =>  $user->name,
                     'access'  =>  $user->access,
                     'token' => $token,
+                    'user' => $user,
+
                 ], 200);
             }
 
@@ -189,6 +191,7 @@ class ApiController extends Controller
                     'username'  =>  $user->name,
                     'access'  =>  $user->access,
                     'token' => $token,
+                    'user'=>$user
                 ], 200);
             }
 
