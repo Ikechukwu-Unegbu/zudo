@@ -10,14 +10,14 @@ import 'package:zudovest/widget/input_field2.dart';
 import '../../constants/colors.dart';
 import '../../widget/response_dialog.dart';
 
-class CreditForm extends StatefulWidget {
-  const CreditForm({super.key});
+class DebitForm extends StatefulWidget {
+  const DebitForm({super.key});
 
   @override
-  State<CreditForm> createState() => _CreditFormState();
+  State<DebitForm> createState() => _DebitFormState();
 }
 
-class _CreditFormState extends State<CreditForm> {
+class _DebitFormState extends State<DebitForm> {
   String? amount, useId, description;
   TextEditingController amountCrt = TextEditingController();
   TextEditingController useIdCrt = TextEditingController();
@@ -103,9 +103,6 @@ class _CreditFormState extends State<CreditForm> {
                       desc: descriptionCrt.text);
 
                   if (isSuccess) {
-                    amountCrt.text = "";
-                    useIdCrt.text = "";
-                    descriptionCrt.text = "";
                     showAlert(context, AlertType.success, "Success", "");
                   }
                 }

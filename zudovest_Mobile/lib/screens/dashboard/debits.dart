@@ -12,6 +12,7 @@ import '../../widget/button1.dart';
 import '../../widget/display_list.dart';
 import '../../widget/input_field2.dart';
 import '../../widget/textinputfield.dart';
+import '../forms/debit_form.dart';
 
 class Debit extends StatefulWidget {
   const Debit({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _DebitState extends State<Debit> {
                 onPressed: () {
                   showMaterialModalBottomSheet(
                     context: context,
-                    builder: (context) => CreditForm(),
+                    builder: (context) => DebitForm(),
                   );
                 },
                 text: "Payout User",
