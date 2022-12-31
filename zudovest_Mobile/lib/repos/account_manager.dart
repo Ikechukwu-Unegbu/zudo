@@ -4,9 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:zudovest/models/usermodel.dart';
 import 'package:zudovest/repos/navigator_service.dart';
 import 'package:zudovest/screens/dashboard/homescreen.dart';
 
+import '../constants/currentuser.dart';
 import 'api_uri.dart';
 import 'general.dart';
 
@@ -50,8 +52,17 @@ class AccountManager extends ChangeNotifier {
       if (response.statusCode == 200) {
         /// GeneralRepo().navigateToScreen2(HomeScreen());
         // isSuccessful = true;
-        NavigationService().navigateToScreen(HomeScreen());
+        UserModel userModel = UserModel.fromJson(result);
+        currentUser = userModel;
+
+        NavigationService().navigateToScreen(HomeScreen(
+          userModel: userModel,
+        ));
         print(result);
+        // var username = result["username"];
+        // var access = result["access"];
+        // var token = result["token"];
+
         _loginMsg = result["message"];
       } else {
         _loginMsg = result[

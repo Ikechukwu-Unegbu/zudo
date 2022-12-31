@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:zudovest/constants/colors.dart';
+import 'package:zudovest/constants/currentuser.dart';
 import 'package:zudovest/constants/dimensions.dart';
 import 'package:zudovest/widget/opacity_bg.dart';
 
@@ -52,7 +53,7 @@ class _DashboardTemplateState extends State<DashboardTemplate> {
                           ))),
                     ]),
                 Text(
-                  "Agent x",
+                  currentUser!.fullname!,
                   style: TextStyle(
                       color: Colors.white70,
                       fontSize: 20,

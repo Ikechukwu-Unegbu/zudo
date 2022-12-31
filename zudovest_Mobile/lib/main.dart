@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zudovest/repos/account_manager.dart';
 import 'package:zudovest/repos/navigator_service.dart';
+import 'package:zudovest/repos/users_repo.dart';
 import 'package:zudovest/screens/splashscreen.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AccountManager()),
+        ChangeNotifierProvider(create: (_) => UsersRepo()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

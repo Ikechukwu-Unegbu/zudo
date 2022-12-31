@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:zudovest/repos/users_repo.dart';
 import 'package:zudovest/screens/forms/add_user_form.dart';
 
 import '../../constants/colors.dart';
@@ -17,10 +18,7 @@ class AddUser extends StatefulWidget {
 }
 
 class _AddUserState extends State<AddUser> {
-  getUsers() async {
-    List<Map> users = [{}, {}, {}];
-    return users;
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class _AddUserState extends State<AddUser> {
           margin: EdgeInsets.only(top: 70),
           width: getSize(context).width,
           child: FutureBuilder(
-            future: getUsers(),
+            future: UsersRepo().getallUsers(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return CupertinoActivityIndicator();

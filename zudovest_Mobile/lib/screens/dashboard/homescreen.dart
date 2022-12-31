@@ -1,5 +1,6 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:zudovest/constants/currentuser.dart';
 import 'package:zudovest/models/usermodel.dart';
 import 'package:zudovest/screens/dashboard/credits.dart';
 import 'package:zudovest/screens/dashboard/debits.dart';
@@ -7,7 +8,8 @@ import 'package:zudovest/screens/dashboard/users.dart';
 import 'package:zudovest/widget/dashboard_template.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  UserModel userModel;
+  HomeScreen({super.key, required this.userModel});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DashboardTemplate(title: "Users", body: screens[initialIndex]),
+      body: DashboardTemplate(title: "Users ", body: screens[initialIndex]),
       bottomNavigationBar: FlashyTabBar(
         animationCurve: Curves.easeInCubic,
         selectedIndex: initialIndex,
