@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:zudovest/repos/general.dart';
+import 'package:zudovest/screens/sign_in.dart';
 
 import '../constants/strings.dart';
 
@@ -23,9 +25,8 @@ class _SplashScreenState extends State<SplashScreen>
     animation = Tween(begin: 0.0, end: 1.0).animate(controler);
     controler.forward();
 
-   
     Timer(Duration(seconds: 3), () {
-     
+      GeneralRepo().navigateToScreen(context, SignIn());
     });
 
     //Timer(Duration(seconds: 4), () {});

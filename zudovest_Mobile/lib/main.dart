@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zudovest/repos/account_manager.dart';
+import 'package:zudovest/repos/navigator_service.dart';
 import 'package:zudovest/screens/splashscreen.dart';
 
 void main() {
@@ -11,13 +14,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Zudo Vest',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AccountManager()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Zudo Vest',
+        navigatorKey: NavigationService().navigationKey,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: "Raleway",
+        ),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

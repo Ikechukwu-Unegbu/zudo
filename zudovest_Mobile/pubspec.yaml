@@ -34,6 +34,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flashy_tab_bar2: ^0.0.4
+  modal_bottom_sheet: ^2.1.2
+  provider:
+  http:
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +65,16 @@ flutter:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg
+  fonts:
+       - family: Raleway
+         fonts:
+           - asset: assets/fonts/raleway.ttf
+       - family: Roboto
+         fonts:
+           - asset: assets/fonts/roboto.ttf 
+       - family: Lato
+         fonts:
+           - asset: assets/fonts/lato.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
