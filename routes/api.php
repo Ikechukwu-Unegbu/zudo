@@ -56,7 +56,7 @@ Route::get('/user/wallet/{id}', [UsersController::class, 'userWalletBal'])->name
 Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelContribution']);
 Route::get('/transactions/channel/debits/{channelid}', [TransactionsController::class, 'getChannelDebits']);
 
-Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx']);
+Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx'])->middleware(['auth:sanctum']);
 
 Route::post('/credit/post/{agent_id}', [TransactionsController::class, 'registerCredit']);
 Route::post('/update/credit/{cred_id}/{channel_id}', [TransactionsController::class, 'updateCredit']);

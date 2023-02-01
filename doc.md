@@ -69,15 +69,20 @@
 
 #### Success response
     You will get back the full details of what you entered if everything went fine
-    {
-        "amount": "3400",
-        "customer_id": "22",
-        "approved": 0,
-        "staff_id": "24",
-        "updated_at": "2022-11-21T14:01:03.000000Z",
-        "created_at": "2022-11-21T14:01:03.000000Z",
-        "id": 94
-    }
+    
+        {
+            "status": true,
+            "message": "transaction recorded",
+            "data": {
+                 "amount": "3400",
+                "customer_id": "22",
+                "approved": 0,
+                "staff_id": "24",
+                "updated_at": "2022-11-21T14:01:03.000000Z",
+                "created_at": "2022-11-21T14:01:03.000000Z",
+                "id": 94
+            }
+        }
 
 #### Error responses 
     1. Assuming  there is a missing field then you will get a respons like:
@@ -110,15 +115,19 @@
 
 ### Success Response 
     {
-        "id": 94,
-        "amount": "5200",
-        "type": "transfer",
-        "approved": 0,
-        "customer_id": "22",
-        "description": null,
-        "staff_id": "24",
-        "created_at": "2022-11-21T14:01:03.000000Z",
-        "updated_at": "2022-11-21T14:40:00.000000Z"
+        "status":true, 
+        "message":"updated",
+        "data":{
+                "id": 94,
+                "amount": "5200",
+                "type": "transfer",
+                "approved": 0,
+                "customer_id": "22",
+                "description": null,
+                "staff_id": "24",
+                "created_at": "2022-11-21T14:01:03.000000Z",
+                "updated_at": "2022-11-21T14:40:00.000000Z"
+        }
     }
 
 #### Error responses 
@@ -315,19 +324,22 @@
         }
     }   
 
-#### Success response 
-    {
-        "amount": "5000",
-        "customer_id": 22,
-        "agent_id": 24,
-        "purpose": "Contribution",
-        "trx_type": 1,
-        "updated_at": "2022-11-23T12:32:11.000000Z",
-        "created_at": "2022-11-23T12:32:11.000000Z",
-        "id": 268
-    }
-
-
+#### Success response
+   {
+        "status": false,
+        "message": "Transaction recorded.",
+        "data": {
+            "amount": "5000",
+            "customer_id": 22,
+            "agent_id": 24,
+            "purpose": "Contribution",
+            "trx_type": 1,
+            "updated_at": "2022-11-23T12:32:11.000000Z",
+            "created_at": "2022-11-23T12:32:11.000000Z",
+            "id": 268
+        }
+    }  
+    
 
 ## Updating Contribution/Credit Record 
     Make a POST request to domain.com/api/update/credit/{cred_id}/{channel_id}
@@ -356,6 +368,8 @@
 #### Success Response 
     It return both the edited credit record and wallet balance
     {
+        "status":true, 
+        "message":"updated",
         "credit": {
             "id": 268,
             "customer_id": "22",

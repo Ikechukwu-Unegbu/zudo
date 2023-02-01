@@ -43,7 +43,13 @@ class RequestController extends Controller
         $admin = User::where('access','!=', 'users')->get();
         Notification::sendNow($admin, new TellAdminAboutWithdrawalRequest($requetModel,  User::find($request->customer)));
 
-        return response()->json($requetModel);
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Transaction recorded.',
+            'data' => $requetModel
+        ], 200);
+        
     }
 
 
@@ -69,8 +75,12 @@ class RequestController extends Controller
         $requestModel->approved = 0;
         $requestModel->staff_id = $agent;
         $requestModel->save();
+        return response()->json([
+            'status' => true,
+            'message' => 'update',
+            'data' =>$requestModel
+        ], 200);
 
-        return response()->json($requestModel);
     }
 
 

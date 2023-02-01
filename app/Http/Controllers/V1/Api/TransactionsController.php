@@ -106,7 +106,13 @@ class TransactionsController extends Controller
             $wallet = Wallet::where('user_id', $customer->id)->first();
             $wallet->balance = (float)$wallet->balance + (float)$request->amount;
             $wallet->save();
-            return response()->json($trx);
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => 'Transaction recorded.',
+                    'data'=>$trx 
+                ], 200
+            );
         });      
     }
 
@@ -139,9 +145,12 @@ class TransactionsController extends Controller
                 $trx->save();
 
               return response()->json([
+                "status"=>true,
                 "credit"=>$trx,
+                "message"=>"updated",
                 "wallet"=>$wallet
               ]);
+
           }else{
             return response()->json([
                 'status' => false,
