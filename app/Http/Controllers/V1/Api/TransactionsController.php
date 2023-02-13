@@ -25,6 +25,9 @@ class TransactionsController extends Controller
         
                 $transactions = Transaction::where('trx_type', 1)
                     ->where('agent_id', $channelId)->orderBy('id', 'desc')->paginate(50);
+                    foreach($transactions as $transaction){
+                        $transaction->customer_name = $transaction->customer->name;
+                    }
                 return response()->json($transactions);
 
             return response()->json($transactions);
@@ -37,6 +40,9 @@ class TransactionsController extends Controller
         $transactions = Transaction::where('trx_type', 1)
         ->whereBetween('created_at', [$startDate, $endDate])
         ->where('agent_id', $channelId)->orderBy('id', 'desc')->paginate(50);
+        foreach($transactions as $transaction){
+            $transaction->customer_name = $transaction->customer->name;
+        }
         return response()->json($transactions);
     }
 
@@ -48,7 +54,10 @@ class TransactionsController extends Controller
         
                 $transactions = Transaction::where('trx_type', 0)
                     ->where('agent_id', $channelId)->orderBy('id', 'desc')->paginate(50);
-                return response()->json($transactions);
+                // return response()->json($transactions);
+                foreach($transactions as $transaction){
+                    $transaction->customer_name = $transaction->customer->name;
+                }
 
             return response()->json($transactions);
         }
@@ -60,6 +69,9 @@ class TransactionsController extends Controller
         $transactions = Transaction::where('trx_type', 0)
         ->whereBetween('created_at', [$startDate, $endDate])
         ->where('agent_id', $channelId)->orderBy('id', 'desc')->paginate(50);
+        foreach($transactions as $transaction){
+            $transaction->customer_name = $transaction->customer->name;
+        }
         return response()->json($transactions);
     }
 
