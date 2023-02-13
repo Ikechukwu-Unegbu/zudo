@@ -28,6 +28,17 @@
     <button class="button mt-3 mb-3 btn btn-sm btn-primary"  data-toggle="modal" data-target="#new-staff">
         New User
     </button>
+    <div class="dropdown mt-4">
+      <button class="btn btn-secondary dropdown-toggle" style="float: right;" type="button" data-toggle="dropdown" aria-expanded="false">
+        Sort By Channel
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Default</a>
+        @foreach($channels as $channel)
+        <a class="dropdown-item" href="{{route('customers.by.channel', ['channel_id'=>$channel->id])}}">{{$channel->name}}</a>
+        @endforeach
+      </div>
+    </div>
 
     @include('partials._message')
 </div>

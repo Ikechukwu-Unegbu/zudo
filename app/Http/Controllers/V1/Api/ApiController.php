@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\V1\Admin\Channel;
 use App\Models\V1\Admin\Transaction;
+use App\Models\V1\Users\Wallet;
 use App\Services\SMSService;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
@@ -87,6 +88,11 @@ class ApiController extends Controller
                 'password'  =>  bcrypt($request->password),
                 'access'    =>  'channel',
             ]);
+            //add wallet 
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
 
             $token = $user->createToken('API TOKEN')->plainTextToken;
 
@@ -135,6 +141,8 @@ class ApiController extends Controller
                     'username'  =>  $user->name,
                     'access'  =>  $user->access,
                     'token' => $token,
+                    'user' => $user,
+
                 ], 200);
             }
 
@@ -151,8 +159,8 @@ class ApiController extends Controller
 
     public function ChannelLogin(Request $request)
     {
-        if ($request->wantsJson())
-        {
+        // var_dump($request->all());die;
+        
             $validator = Validator::make($request->all(), [
                 'email'     =>  'required|email',
                 'password'  =>  'required|string',
@@ -174,8 +182,8 @@ class ApiController extends Controller
             }
 
             $user = $request->user();
-            if ($user->access == 'channel')
-            {
+            if ($user->access == 'channel'){
+
                 $token = $user->createToken('API TOKEN')->plainTextToken;
                 return response()->json([
                     'status' => true,
@@ -183,18 +191,14 @@ class ApiController extends Controller
                     'username'  =>  $user->name,
                     'access'  =>  $user->access,
                     'token' => $token,
+                    'user'=>$user
                 ], 200);
             }
 
             return response()->json([
                 'message'   =>  "You are not authorized to access the page!"
             ]);
-        }
-        else
-        {
-            return null;
-        }
-
+      
     }
 
     public function forgotPassword(Request $request)
@@ -301,7 +305,11 @@ class ApiController extends Controller
                 'channel_description'   =>  $request->description,
                 'access'     => 'channel'
             ]);
-
+             //add wallet 
+             $wallet = new Wallet();
+             $wallet->balance = 0;
+             $wallet->user_id = $user->id;
+             $wallet->save();
             $token = $user->createToken('API TOKEN')->plainTextToken;
 
             return response()->json([
@@ -341,18 +349,18 @@ class ApiController extends Controller
         }
     }
 
-    public function contribution()
-    {
-        if(request()->wantsJson() && auth()->user()->access == 'channel')
-        {
-            $contributions = Transaction::with('customer')->whereAgentId(auth()->user()->id)->orderBy('created_at', 'DESC')->get();
-            return response()->json($contributions);
-        }
-        else
-        {
-            return null;
-        }
-    }
+    // public function contribution()
+    // {
+    //     if(request()->wantsJson() && auth()->user()->access == 'channel')
+    //     {
+    //         $contributions = Transaction::with('customer')->whereAgentId(auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+    //         return response()->json($contributions);
+    //     }
+    //     else
+    //     {
+    //         return null;
+    //     }
+    // }
 
     public function createContribution(Request $request)
     {

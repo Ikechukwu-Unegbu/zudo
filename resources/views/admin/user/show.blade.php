@@ -17,6 +17,13 @@
     width: 12rem;
     border-radius: 50%;
 }
+.wall_div{
+    display:flex;
+    justify-content:center; 
+    align-items:center;
+    width: 100% !important;
+
+}
 </style>
 @endsection
 
@@ -31,9 +38,14 @@
         <div class="profile-image" style="display: flex; justify-content:center;">
             <img @if($user->avatar == null) src="{{asset('image\avatar.jpg')}}" @else src="{{asset('public/userfiles/'.$user->avatar)}}"  @endif alt="" class="user-dp img-fluid">
         </div>
+        <br>
+        <div class="mt-4 mb-4">
+            <h2 class="text-center">N {{$wallet->balance}}</h2>
+        </div>
+        <br>
         @if($user->access == 'channel')
-        <div class="">
-            <p class="text-center">{{$user->channel_description}}</p>
+        <div class="wall_div" >
+            <div class="text-center">{{$user->channel_description}}</div>
         </div>
         @endif
         <!-- <div class="mt-4"> -->

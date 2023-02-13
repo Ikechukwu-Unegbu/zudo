@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\V1\Public\Request as ModelRequest;
 use App\Models\V1\Users\Bankaccount;
+use App\Models\V1\Users\Wallet;
 use App\Services\FileUploadService;
 use Illuminate\Support\Facades\DB;
 
@@ -79,7 +80,7 @@ class AdminController extends Controller
     }
 
     public function requests(){
-        $requests = ModelRequest::paginate(20);
+        $requests = ModelRequest::orderBy('id', 'desc')->paginate(20);
         return view('admin.requests.index')->with('requests', $requests);
     }
 
@@ -89,6 +90,13 @@ class AdminController extends Controller
     }
 
     public function customers(){
+        if(request()->input('channel_id')!=null){
+            // var_dump('by channel');die;
+            $customers = User::orderBy('id', 'desc')->where('channel_id', request()->input('channel_id'))->paginate(20);
+            $channels = User::whereAccess('channel')->get();
+    
+            return view('admin.customers.customers', compact('channels'))->with('customers', $customers);
+        }
         $customers = User::orderBy('id', 'desc')->paginate(20);
         $channels = User::whereAccess('channel')->get();
 
@@ -173,7 +181,11 @@ class AdminController extends Controller
             $user->channel_description  = $request->description;
             $user->save();
            
-
+            //add wallet
+            $wallet = new Wallet();
+            $wallet->user_id = $user->id;
+            $wallet->balance = 0;
+            $wallet->save();
             //image upload -- next of kin document
             if($request->hasFile('user_dp')) {
                 $uploadInstance = new FileUploadService();
@@ -193,13 +205,16 @@ class AdminController extends Controller
     }
 
     public function showUser($userid){
+        // var_dump($userid);die;
         $user = User::find($userid);
         $bankinfo = Bankaccount::where('user_id', $userid)->get();
         $kins = Kin::where('user_id', $userid)->get();
         $channels = User::where('access', 'channels')->get();
+        $wallet = Wallet::where('user_id', $user->id)->first();
 
         return view('admin.user.show')->with('user', $user)->with('bankacc', $bankinfo)
                                         ->with('kins', $kins)
+                                        ->with('wallet', $wallet)
                                         ->with('channels', $channels);
     }
 
@@ -238,6 +253,11 @@ class AdminController extends Controller
 
             $request->approved = 1;
             $request->save();
+
+            //deduct from user wallet
+            $wallet = Wallet::where('user_id', $request->customer_id)->first();
+            $wallet->balance = (float)$wallet->balance - (float)$request->amount;
+            $wallet->save();
         });
         Session::flash('success', 'Resolved and moved to transaction.');
         return redirect()->route('admin.customer.withdrawal');

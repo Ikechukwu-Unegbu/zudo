@@ -17,23 +17,23 @@ Login.
 
 4. Deposit/Withdrawal table ready
 
-Login guide
+## WEBSITE Login guide
 
-    User  
+    ### User  
     -Login Url: https://domainname/login 
     -Rgister Url: https://domainname/register 
 
-    Channel
+    ### Channel
     -Login Url: https://domainname/channel/login 
     -Rgister Url: https://domainname/channel/register 
 
-    Admin
+    ### Admin
     -Login Url: https://domainname/admin/login 
     -Rgister Url: https://domainname/admin/register 
 
- Domingo Api Docs
+ # Zudovest Api Docs
 
-    To Register an Admin
+   ## To Register an Admin
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/register',
     Method: 'POST',
@@ -85,7 +85,7 @@ Login guide
             }
         }
 
-    To Register A Channel
+    ## To Register A Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/register',
     Method: 'POST',
@@ -138,7 +138,7 @@ Login guide
             }
         }
 
-    To Login as an Admin
+##    To Login as an Admin
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/login',
     Method: 'POST',
@@ -155,7 +155,12 @@ Login guide
         "message": "User Logged In Successfully",
         "username": "Emmanuel",
         "access": "admin",
-        "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+        "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL",
+        "user":{
+            "id":"",
+            user info
+
+        }
     }
 
     Validation Response:
@@ -172,7 +177,7 @@ Login guide
             }
         }
 
-    To Login as a Channel
+## To Login as a Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/channel/login',
     Headers: 'Accept: application/json',
@@ -182,16 +187,21 @@ Login guide
             "password": " ",
         }
     
-    Success Response:
+####    Success Response:
         {
             "status": true,
             "message": "User Logged In Successfully",
             "username": "Emmanuel",
             "access": "channel",
-            "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL"
+            "token": "13|51CChbhQJCADG7HfGN1GyrL9SL4wLNrrU0Jn9vcL",
+            "user":{
+                "id":"",
+                user info
+
+            }
         }
         
-    Validation Response:
+####    Validation Response:
         {
             "status": false,
             "message": "validation error",
@@ -205,7 +215,7 @@ Login guide
             }
         }
 
-    To Logout
+ ##   To Logout
     - Make a post request to this endpoint
     url: 'https://domainname/api/logout'
     Method: 'POST',
@@ -217,7 +227,7 @@ Login guide
         }
 
     
-    Forgot Password
+   ## Forgot Password
     - Make a post request to this endpoint
     url: 'https://domainname/api/forgot-password',
     Headers: 'Accept: application/json',
@@ -242,7 +252,7 @@ Login guide
             }
         }
 
-    To Reset Password
+##    To Reset Password
     - Make a post request to this endpoint
     url: 'https://domainname/api/reset-password',
     Method: 'POST',
@@ -280,7 +290,7 @@ Login guide
             }
         }
 
-    For Admin to Create new Channel
+##    For Admin to Create new Channel
     - Make a post request to this endpoint
     url: 'https://domainname/api/admin/channel/create',
     Method: 'POST',
@@ -294,7 +304,7 @@ Login guide
             "mobile": " ",
             "gender": "Male or Female",
             "password": " ",
-            "password_confirmation": " ",
+            "password_confirmation": "",
             "description": " ",
         }
 
@@ -349,7 +359,7 @@ Login guide
         }
 
 
-    For Admin to Read all Channels
+##    For Admin to Read all Channels
     - Make a get request to this endpoint
     url: 'https://domainname/api/admin/channels',
     Method: 'GET',
@@ -396,7 +406,7 @@ Login guide
             ]
         }
 
-    User Assigned to Channel
+ ##   User Assigned to Channel
     - Make a get request to this endpoint
     url: 'https://domainname/api/channel/user/assign',
     Method: 'GET',
@@ -421,7 +431,7 @@ Login guide
             "deleted_at": null
         }
 
-    For Channel to get Contribution
+   ## For Channel to get Contribution
     - Make a get request to this endpoint
     url: 'https://domainname/api/channel/deposit',
     Method: 'GET',
@@ -443,44 +453,3 @@ Login guide
             "withdraw_type": null,
             "initiated_by": null
         }
-    
-    For Channel to create contribution/debit for user Assigned to the channel
-    - Make a post request to this endpoint
-    url: 'https://domainname/api/channel/deposit/create',
-    Method: 'POST',
-    Headers: 'Accept: application/json',
-    Headers: 'Authorization: Bearer --Token',
-
-    NB: use this URL  ([url => 'https://domainname/api/channel/user/assign', Method => GET]) to select the id of the user while selecting user to make deposit/contribution.
-
-    Body:
-        {
-            "amount": " ",
-            "userId": " ",
-            "purpose": " "
-        }
-
-    
-    Validation Response:
-        "status": false,
-        "message": "validation error",
-        "errors": {
-            "amount": [
-                "The amount field is required."
-            ],
-            "userId": [
-                "The user id field is required.",
-                "The user id must be an integer."
-            ]
-        }
-
-    Success Response: 
-        {
-            "message": "Contribution/Debit Created Successfully",
-            "amount": "100000",
-            "user": "Jane Doe",
-            "purpose": "Contribution"
-        }
-
-
-    Configure MAIL_MAILER in .env file to let Forget Password & Reset Password to work

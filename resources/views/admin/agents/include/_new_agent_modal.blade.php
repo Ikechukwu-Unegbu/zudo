@@ -9,7 +9,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">New Zudovest Channel</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">New Zudovest Customer</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -44,21 +44,31 @@
             <div class="form-group">
               <label for="" class="form-label">Select User type <span>*</span></label>
                 <select class="custom-select" name="user_type">
-                    <option selected>Open this select menu</option>
-                    <option value="channel">Agent</option>
+                    <option>Open this select menu</option> 
                     <option value="user">Customer</option>
+                    @if(Auth::user()->access == 'admin')
+                    <option value="channel">Agent</option>
                     <option value="admin">Admin</option>
+                    @endif
                 </select>
             </div>
-            {{--<div class="form-group">
+            <div class="form-group">
                 <label for="" class="form-label">Select a Channel <span>*</span></label>
                     <select class="custom-select" name="channel">
                       <option selected>Open this select menu</option>
+                       @if(Auth::user()->access == 'admin')
                         @foreach($channels as $channel)
                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                         @endforeach
+                       @else 
+                       @foreach($channels as $channel)
+                            @if(Auth::user()->id == $channel->id)
+                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                            @endif
+                        @endforeach
+                       @endif
                     </select>
-            </div>--}}
+            </div>
             <div class="form-group">
                 <label for="" class="form-label">Password <span>*</span></label>
                 <input type="password" name="password" class="form-control">

@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('bankaccounts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('bank_name');
-            $table->string('bank_account');
+            $table->string('bank_name')->nullable();
+            $table->string('bank_account')->nullable();
+            $table->string('account_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
