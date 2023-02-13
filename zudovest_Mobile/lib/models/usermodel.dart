@@ -17,16 +17,17 @@ class UserModel {
   String? createdAt;
   int? id;
   String? token;
-  UserModel({
-    this.name,
-    this.fullname,
-    this.email,
-    this.access,
-    this.updatedAt,
-    this.createdAt,
-    this.id,
-    this.token,
-  });
+  String? phone;
+  UserModel(
+      {this.name,
+      this.fullname,
+      this.email,
+      this.access,
+      this.updatedAt,
+      this.createdAt,
+      this.id,
+      this.token,
+      this.phone});
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         fullname: json["username"],
@@ -37,6 +38,19 @@ class UserModel {
         updatedAt: (json["user"]["updated_at"]),
         createdAt: (json["user"]["created_at"]),
         id: json["user"]["id"],
+        phone:""
+      );
+
+  factory UserModel.fromJson2(Map<String, dynamic> json) => UserModel(
+        fullname: json["username"],
+        access: json["access"],
+        token: json["token"],
+        email: json["email"],
+        name: json["name"],
+        updatedAt: (json["updated_at"]),
+        createdAt: (json["created_at"]),
+        id: json["id"],
+        phone: json["phone"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,5 +62,6 @@ class UserModel {
         "created_at": createdAt,
         "id": id,
         "token": token,
+        "phone":phone
       };
 }

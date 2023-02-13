@@ -97,16 +97,19 @@ class _CreditFormState extends State<CreditForm> {
               width: getSize(context).width / 1.3,
               onPressed: () async {
                 if (usersRepo.formKey.currentState!.validate()) {
-                  bool isSuccess = await usersRepo.creditUser(
+                  bool isSuccess = await usersRepo.transact(
                       amount: amountCrt.text,
                       userId: useIdCrt.text,
-                      desc: descriptionCrt.text);
+                      desc: descriptionCrt.text,
+                      transactionType: 1);
 
                   if (isSuccess) {
                     amountCrt.text = "";
                     useIdCrt.text = "";
                     descriptionCrt.text = "";
                     showAlert(context, AlertType.success, "Success", "");
+                  } else {
+                    showAlert(context, AlertType.error, "Failed", "");
                   }
                 }
               },

@@ -8,6 +8,7 @@ import 'package:zudovest/constants/dimensions.dart';
 import 'package:zudovest/screens/forms/credit_form.dart';
 import 'package:zudovest/widget/dashboard_template.dart';
 
+import '../../repos/transaction_repo.dart';
 import '../../widget/button1.dart';
 import '../../widget/display_list.dart';
 import '../../widget/input_field2.dart';
@@ -22,11 +23,6 @@ class Debit extends StatefulWidget {
 }
 
 class _DebitState extends State<Debit> {
-  getUsers() async {
-    List<Map> users = [{}, {}, {}];
-    return users;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +51,7 @@ class _DebitState extends State<Debit> {
             margin: EdgeInsets.only(top: 70),
             width: getSize(context).width,
             child: FutureBuilder(
-              future: getUsers(),
+              future: TransactionRepo().getCredits(2),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CupertinoActivityIndicator();
@@ -66,7 +62,7 @@ class _DebitState extends State<Debit> {
                 if (!snapshot.hasData) {
                   return Center(child: Text("No data"));
                 }
-                return DisplayList(snapshot.data as List, "users");
+                return DisplayList(snapshot.data as List, "credit");
               },
             ),
           )

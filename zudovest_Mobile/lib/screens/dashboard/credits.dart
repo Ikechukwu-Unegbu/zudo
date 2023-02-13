@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:zudovest/constants/colors.dart';
 import 'package:zudovest/constants/dimensions.dart';
+import 'package:zudovest/repos/transaction_repo.dart';
 import 'package:zudovest/screens/forms/credit_form.dart';
 import 'package:zudovest/widget/dashboard_template.dart';
 
@@ -21,10 +22,10 @@ class Credit extends StatefulWidget {
 }
 
 class _CreditState extends State<Credit> {
-  getUsers() async {
-    List<Map> users = [{}, {}, {}];
-    return users;
-  }
+  // getCredits() async {
+  //   List<Map> users = [{}, {}, {}];
+  //   return users;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _CreditState extends State<Credit> {
             margin: EdgeInsets.only(top: 70),
             width: getSize(context).width,
             child: FutureBuilder(
-              future: getUsers(),
+              future: TransactionRepo().getCredits(1),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CupertinoActivityIndicator();
@@ -65,7 +66,7 @@ class _CreditState extends State<Credit> {
                 if (!snapshot.hasData) {
                   return Center(child: Text("No data"));
                 }
-                return DisplayList(snapshot.data as List, "users");
+                return DisplayList(snapshot.data as List, "credit");
               },
             ),
           )

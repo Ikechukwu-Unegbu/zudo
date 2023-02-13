@@ -26,6 +26,7 @@ class _DebitFormState extends State<DebitForm> {
   @override
   Widget build(BuildContext context) {
     UsersRepo usersRepo = context.watch<UsersRepo>();
+    
     return Form(
         key: usersRepo.formKey,
         child: Column(
@@ -97,13 +98,19 @@ class _DebitFormState extends State<DebitForm> {
               width: getSize(context).width / 1.3,
               onPressed: () async {
                 if (usersRepo.formKey.currentState!.validate()) {
-                  bool isSuccess = await usersRepo.creditUser(
+                  bool isSuccess = await usersRepo.transact(
                       amount: amountCrt.text,
                       userId: useIdCrt.text,
-                      desc: descriptionCrt.text);
+                      desc: descriptionCrt.text,
+                      transactionType: 2);
 
                   if (isSuccess) {
+                    amountCrt.text = "";
+                    useIdCrt.text = "";
+                    descriptionCrt.text = "";
                     showAlert(context, AlertType.success, "Success", "");
+                  } else {
+                    showAlert(context, AlertType.error, "Failed", "");
                   }
                 }
               },

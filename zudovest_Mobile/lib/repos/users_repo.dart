@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:ffi';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -14,17 +13,28 @@ class UsersRepo extends ChangeNotifier {
   bool _isLoading = false;
   String get responseMsg => _responseMsg;
   bool get isLoading => _isLoading;
+  UsersRepo() {
+    notifyListeners();
+  }
 
   getallUsers() async {
-    List<Map> users = [{}, {}, {}];
+    List<Map> users = [];
     try {
-      Response response = await http
-          .get(Uri.parse(fetUsersUrl + currentUser!.token!.toString()));
+      // print(fetUsersUrl);
+      //print(currentUser!.token!.toString());
+      Response response = await http.get(Uri.parse(fetUsersUrl), headers: {
+        HttpHeaders.authorizationHeader: currentUser!.token!.toString(),
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + currentUser!.token!.toString(),
+      });
 
       if (response.statusCode == 200) {
-        // print(fetUsersUrl + currentUser!.token!.toString());
+        //print(fetUsersUrl + currentUser!.token!.toString());
         //print(response.body);
-        return users;
+        var result = jsonDecode(response.body);
+
+        return result['data'];
       }
     } catch (e) {
       print(e.toString());
@@ -33,10 +43,11 @@ class UsersRepo extends ChangeNotifier {
     return users;
   }
 
-  Future<bool> creditUser(
+  Future<bool> transact(
       {required String amount,
       required String userId,
-      required String desc}) async {
+      required String desc,
+      required int transactionType}) async {
     print(desc);
     _responseMsg = "";
 
@@ -44,15 +55,24 @@ class UsersRepo extends ChangeNotifier {
     notifyListeners();
 
     try {
+      print(creditUrl);
       Response response = await http.post(
-          Uri.parse(creditUrl + currentUser!.id!.toString()),
-          body: {"amount": amount, "customer": userId, "purpose": desc});
+          Uri.parse(transactionType == 1 ? creditUrl : debitUrl),
+          body: jsonEncode(
+              {"amount": amount, "customer": userId, "purpose": desc}),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + currentUser!.token!.toString(),
+          });
 
       var data = jsonDecode(response.body);
+      print(data);
       _isLoading = false;
 
-      if (data["customer_id"] > 0) {
-        _responseMsg = "";
+      if (data["status"] == true) {
+        _responseMsg = data["message"];
+        notifyListeners();
         return true;
       } else {
         _responseMsg = data["message"];

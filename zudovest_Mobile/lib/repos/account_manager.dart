@@ -50,6 +50,8 @@ class AccountManager extends ChangeNotifier {
           .post(channelLoginUri, body: {"email": email, "password": password});
       dynamic result = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        print(result);
+
         /// GeneralRepo().navigateToScreen2(HomeScreen());
         // isSuccessful = true;
         UserModel userModel = UserModel.fromJson(result);
