@@ -35,7 +35,7 @@ Route::group([
 ], function() {
     Route::get('/channels', [ApiController::class, 'channels']);
     Route::post('/channel/create', [ApiController::class, 'AdminToCreateChannel']);
-
+    Route::post('/create/channel/{channel_id}/users', [UsersController::class, 'channelCreateUser']);
 });
 
 

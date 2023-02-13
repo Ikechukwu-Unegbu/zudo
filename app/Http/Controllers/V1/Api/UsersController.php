@@ -9,6 +9,7 @@ use App\Models\V1\Users\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -17,6 +18,54 @@ class UsersController extends Controller
         return response()->json(Wallet::where('user_id', $userid)->first());
     }
 
+    public function channelCreateUser(Request $request, $channel_id){
+        if ($request->wantsJson())
+        {
+            $validator = Validator::make($request->all(), [
+                'name'  =>  'required|string',
+                'username'  =>  'required|string|unique:users,name',
+                'phone'=>'required|string|unique:users',
+                // 'email'     =>  'r',
+                'password'  =>  'required|string|min:6',
+                'password_confirmation'  =>  'required|same:password'
+            ]);
+
+            if($validator->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validator->errors()
+                ], 401);
+            }
+
+            $user = User::create([
+                'name'  =>  $request->username,
+                'fullname'  =>  $request->name,
+                'email'     =>  $request->email,
+                'channel_id'=>$channel_id,
+                'password'  =>  bcrypt($request->password),
+                'access'    =>  'user',
+            ]);
+            //add wallet 
+            $wallet = new Wallet();
+            $wallet->balance = 0;
+            $wallet->user_id = $user->id;
+            $wallet->save();
+
+            $token = $user->createToken('API TOKEN')->plainTextToken;
+
+            return response()->json([
+                'status'=>true,
+                'message' => 'User Created Successfully',
+                'user'  =>  $user,
+                'token' => $token
+            ]);
+        }
+        else
+        {
+            return null;
+        }
+    }
 
    public function userInfoByEmail($keyword, $key){
         if($keyword =='email'){

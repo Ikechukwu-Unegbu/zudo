@@ -453,3 +453,67 @@ Login.
             "withdraw_type": null,
             "initiated_by": null
         }
+
+
+## Channel to create users
+    - Make a post request to this endpoint for channels to create users
+    url: 'https://domainname/api/create/channel/{channel_id}/users',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    Body:
+        {
+            "name": " ",
+            "username": " ",
+            "email": " optional",
+            "mobile": "must ",
+            "gender": "Male or Female",
+            "password": " ",
+            "password_confirmation": "",
+            "description": " ",
+        }
+
+#### Success Response: 
+        {   "status":true
+            "message": "user Created Successfully",
+            "user": {
+                "name": "Emmanuel",
+                "fullname": "Emmanuel Ade",
+                "email": "emmanuel@gmail.com",
+                "access": "user",
+                "updated_at": "2022-09-20T17:58:06.000000Z",
+                "created_at": "2022-09-20T17:58:06.000000Z",
+                "channel_id":channel_id
+                "id": 1
+            },
+            "wallet":{
+                "balance":0
+            }
+            "token": "11|OyTkILfqOpXMc8rwsopWffwSVUPlBPCIhCu3AU7B"
+        }
+### Validation Response:
+        {
+            "status": false,
+            "message": "validation error",
+            "errors": {
+                "name": [
+                    "The name field is required."
+                ],
+                "username": [
+                    "The username field is required.",
+                    "The username has already been taken."
+                ],
+                "email": [
+                    "The username field is required.",
+                    "The email has already been taken."
+                ],
+                "password": [
+                    "The password field is required."
+                ],
+                "password_confirmation": [
+                    "The password confirmation field is required."
+                ]
+            }
+        }
+
+    
