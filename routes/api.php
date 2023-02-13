@@ -35,7 +35,7 @@ Route::group([
 ], function() {
     Route::get('/channels', [ApiController::class, 'channels']);
     Route::post('/channel/create', [ApiController::class, 'AdminToCreateChannel']);
-    Route::post('/create/channel/{channel_id}/users', [UsersController::class, 'channelCreateUser']);
+   
 });
 
 
@@ -53,11 +53,11 @@ Route::group([
 Route::get('/userinfo/{keyword}/{key}', [UsersController::class, 'userInfoByEmail']);//doesnt need authentication
 
 Route::get('/user/wallet/{id}', [UsersController::class, 'userWalletBal'])->name('wallet.bal');
-Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelContribution']);
-Route::get('/transactions/channel/debits/{channelid}', [TransactionsController::class, 'getChannelDebits']);
+Route::get('/transactions/channel/credits/{channelid}', [TransactionsController::class, 'getChannelContribution'])->middleware(['auth:sanctum']);;
+Route::get('/transactions/channel/debits/{channelid}', [TransactionsController::class, 'getChannelDebits'])->middleware(['auth:sanctum']);;
 
 Route::get('/channel/trx/{id}', [TransactionsController::class, 'singleTrx'])->middleware(['auth:sanctum']);
-
+Route::post('/create/channel/{channel_id}/users', [UsersController::class, 'channelCreateUser'])->middleware(['auth:sanctum']);
 Route::post('/credit/post/{agent_id}', [TransactionsController::class, 'registerCredit']);
 Route::post('/update/credit/{cred_id}/{channel_id}', [TransactionsController::class, 'updateCredit']);
 //debit
