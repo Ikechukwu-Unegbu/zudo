@@ -147,7 +147,12 @@ class ApiController extends Controller
                     ], 200);
                 }
     
-            } 
+            } else{
+                return response()->json([
+                    'status'=>false, 
+                    'message'=>'wrong credentails',
+                ]);
+            }
 
     }
 
