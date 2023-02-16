@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rules;
@@ -110,7 +111,7 @@ class ApiController extends Controller
 
     public function AdminLogin(Request $request)
     {
-        if ($request->wantsJson()) {
+        
             $validator = Validator::make($request->all(), [
                 'email'     =>  'required|email',
                 'password'  =>  'required|string',
@@ -124,36 +125,29 @@ class ApiController extends Controller
                 ], 401);
             }
 
-            if (!Auth::attempt($request->only(['email', 'password']))) {
+            $user = User::where('email', $request->email)->first();
+            if(!$user){
                 return response()->json([
-                    'status' => false,
-                    'message' => 'Unauthorized!, check your login credentials',
-                ], 401);
+                    'status'=>false, 
+                    'message'=>'wrong credentails',
+                ]);
             }
-
-            $user = $request->user();
-
-            if ($user->access == 'admin') {
-                $token = $user->createToken('API TOKEN')->plainTextToken;
-                return response()->json([
-                    'status' => true,
-                    'message' => 'User Logged In Successfully',
-                    'username'  =>  $user->name,
-                    'access'  =>  $user->access,
-                    'token' => $token,
-                    'user' => $user,
-
-                ], 200);
-            }
-
-            return response()->json([
-                'message'   =>  "You are not authorized to access the page!"
-            ]);
-        }
-        else
-        {
-            return null;
-        }
+            //check password 
+            if(Hash::check($request->password, $user->password)){
+                if ($user->access == 'admin') {
+                    $token = $user->createToken('API TOKEN')->plainTextToken;
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'User Logged In Successfully',
+                        'username'  =>  $user->name,
+                        'access'  =>  $user->access,
+                        'token' => $token,
+                        'user' => $user,
+    
+                    ], 200);
+                }
+    
+            } 
 
     }
 
