@@ -8,6 +8,16 @@ Step 6: Run transactionseeder
 
 Login.
 
+1. Admin can now create new agents and see existing ones
+1a. The next is to activate the action buttons
+
+2. Admin db notification generated
+
+4. Deposit/Withdrawal table ready
+
+
+
+
 ## Table of Content
 
 * [To Register an Admin](https://github.com/Ikechukwu-Unegbu/zudo#to-register-an-admin)
@@ -21,15 +31,41 @@ Login.
 
 * [Forgot Password](https://github.com/Ikechukwu-Unegbu/zudo#forgot-password)
 
+* [To Reset your Password]( https://github.com/Ikechukwu-Unegbu/zudo#to-reset-password)
+
+* [For Admin to Create New Channel](https://github.com/Ikechukwu-Unegbu/zudo#for-admin-to-create-new-channel)
+
+
+* [For Admin to Read all Channels](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/README.md#for-admin-to-read-all-channels)
+
+* [User Assigned to Channel]( https://github.com/Ikechukwu-Unegbu/zudo#user-assigned-to-channel)
+
+* [For Channel to get Contribution](https://github.com/Ikechukwu-Unegbu/zudo#for-channel-to-get-contribution)
+
+
+* [Get User info by email - requires no authentication](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#get-user-info-by-email---requires-no-authentication)
+
+* [Get User(contributor, channel, admin) Wallet balance](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#get-usercontributor-channel-admin-wallet-balance)
+
+* [Enter Debit/Withdrawal Request](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#enter-debitwithdrawal-request)
+
+* [Updating Debit/Withdrawal Reques](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#updating-debitwithdrawal-request)
+
+
+* [Get all Debit Requests awaiting approval](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#get-all-debit-requests-awaiting-approval)
+
+* [Admin Approving Withdrawal/Debit Request](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#admin-approving-withdrawaldebit-request)
+
+* [Channel Adding Credit/Contribution](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#channel-adding-creditcontribution)
+
+* [Updating Contribution/Credit Record](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#updating-contributioncredit-record)
+
+* [(a) Get channel credits/contributions (b) get channel credits between two dates](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#a-get-channel-creditscontributions-b-get-channel-credits-between-two-dates)
+
+* [Update Credit/Contribution transaction record](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#update-creditcontribution-trnsaction-record)
 
 
 
-1. Admin can now create new agents and see existing ones
-1a. The next is to activate the action buttons
-
-2. Admin db notification generated
-
-4. Deposit/Withdrawal table ready
 
 ## WEBSITE Login guide
 
