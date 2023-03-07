@@ -27,7 +27,8 @@ Login.
 * [To Login as a Channel](https://github.com/Ikechukwu-Unegbu/zudo#to-login-as-a-channel)
 
 
-* [To Logout]( https://github.com/Ikechukwu-Unegbu/zudo#to-logout)
+* [To Logout]( https://github.com/Ikechukwu-Unegbu/zudo#to-logout) 
+
 
 * [Forgot Password](https://github.com/Ikechukwu-Unegbu/zudo#forgot-password)
 
