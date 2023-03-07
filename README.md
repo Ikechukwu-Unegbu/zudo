@@ -8,6 +8,20 @@ Step 6: Run transactionseeder
 
 Login.
 
+## Table of Content
+
+* [To Register an Admin](https://github.com/Ikechukwu-Unegbu/zudo#to-register-an-admin)
+
+* [To login as an Admin ]( https://github.com/Ikechukwu-Unegbu/zudo#to-login-as-an-admin)
+
+* [To Login as a Channel](https://github.com/Ikechukwu-Unegbu/zudo#to-login-as-a-channel)
+
+
+* [To Logout]( https://github.com/Ikechukwu-Unegbu/zudo#to-logout)
+
+* [Forgot Password](https://github.com/Ikechukwu-Unegbu/zudo#forgot-password)
+
+
 
 
 1. Admin can now create new agents and see existing ones
