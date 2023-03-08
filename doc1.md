@@ -113,7 +113,7 @@
 
 
 ## Searching User
-    <img src="docasset\search.jpg"/>
+<img src="docasset\search.jpg"/>
     When a channel search user, the search is "channel", only users under him will be searched
     When the person is "admin" all users will be searched. Backend takes care of determining who is searching
 
