@@ -75,7 +75,7 @@ Route::get('/users/{channel_id}', [UsersController::class, 'usersByChannel'])->m
 Route::get('/search/user/{view_id}', [UsersController::class, 'searchUser'])->middleware(['auth:sanctum']);
 
 
-
+Route::get('/get-user-trx/{userid}', [TransactionsController::class, 'get_all_transaction']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

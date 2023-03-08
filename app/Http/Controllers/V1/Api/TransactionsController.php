@@ -173,5 +173,11 @@ class TransactionsController extends Controller
     }
 
 
-   
+    public function get_all_transaction($userid){
+        $trx = Transaction::where('customer_id', $userid)->get();
+        return response()->json([
+            'status'=>true, 
+            'trx'=>$trx
+        ]);
+    }
 }

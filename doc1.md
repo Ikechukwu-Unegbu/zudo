@@ -190,3 +190,52 @@
             "deleted_at": null
         }
     ]
+
+
+##  All User transaction - debit and credit in one endpoint
+    To get all transactions of a particular user.
+    Method: 'GET',
+    Headers: 'Accept: application/json',
+    Headers: 'Authorization: Bearer --Token',
+    URL: domain.com/api/get-user-trx/{user_id}
+
+#### Response
+
+    {
+        "status": true,
+        "trx": [
+            {
+                "id": 5,
+                "customer_id": 12,
+                "agent_id": "3.00",
+                "trx_type": 1,
+                "amount": "6000.00",
+                "purpose": "contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-25T13:57:19.000000Z",
+                "updated_at": "2022-11-25T13:57:19.000000Z",
+                "approved": 0,
+                "withdraw_type": null,
+                "initiated_by": null
+            },
+            {
+                "id": 6,
+                "customer_id": 12,
+                "agent_id": "3.00",
+                "trx_type": 1,
+                "amount": "6000.00",
+                "purpose": "contribution",
+                "sync": "0",
+                "deleted_at": null,
+                "created_at": "2022-11-25T13:57:19.000000Z",
+                "updated_at": "2022-11-25T13:57:19.000000Z",
+                "approved": 0,
+                "withdraw_type": null,
+                "initiated_by": null
+            }
+            
+        ]
+    }
+
+

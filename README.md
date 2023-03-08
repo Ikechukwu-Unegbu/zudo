@@ -65,7 +65,10 @@ Login.
 
 * [Update Credit/Contribution transaction record](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#update-creditcontribution-trnsaction-record)
 
+### New endpoints
 
+* [All User transaction - debit and credit in one endpoint]()
+    
 
 
 ## WEBSITE Login guide
