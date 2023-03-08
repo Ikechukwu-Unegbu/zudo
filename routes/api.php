@@ -72,7 +72,7 @@ Route::get('/approve/debit/{requestID}/{admin_id}', [RequestController::class, '
 
 // users 
 Route::get('/users/{channel_id}', [UsersController::class, 'usersByChannel'])->middleware(['auth:sanctum']);
-Route::get('/search/user/{view_id}', [UsersController::class, 'searchUser'])->middleware(['auth:sanctum']);
+Route::post('/search/user/{view_id}', [UsersController::class, 'searchUser']);//->middleware(['auth:sanctum']);
 
 
 Route::get('/get-user-trx/{userid}', [TransactionsController::class, 'get_all_transaction']);

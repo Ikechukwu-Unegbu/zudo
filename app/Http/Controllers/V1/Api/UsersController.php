@@ -100,12 +100,20 @@ class UsersController extends Controller
             $result = User::where('name','LIKE','%'.$request->keyword.'%')
                 ->orWhere('fullname','LIKE','%'.$request->keyword.'%')
                 ->get();
+            if($result){
+                foreach($result as $res){
+                    $res->wallet = Wallet::where('user_id', $res->id)->first();
+                }
+            }
             return response()->json($result); 
         } 
         else{
             if($request->keyid != null){
-                $result = User::where('id', (int)$request->keyid)->get();
-                return response()->json($result); 
+                $result = User::where('id', (int)$request->keyid)->first();
+                
+                $result->wallet = Wallet::where('user_id', $result->id)->first();
+              
+                return response()->json([$result]); 
             }
         }
    }

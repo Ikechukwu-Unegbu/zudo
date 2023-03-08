@@ -67,6 +67,10 @@ Login.
 
 * [Searching User](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc1.md#searching-user)
 
+* [Fetching Users](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc1.md#fetching-users)
+
+
+
 ### New endpoints
 
 * [All User transaction - debit and credit in one endpoint](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc1.md#all-user-transaction---debit-and-credit-in-one-endpoint)

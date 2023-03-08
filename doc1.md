@@ -123,7 +123,7 @@
     URL: domain.com/api/search/user/{view_id}
 
     {view_id} is placeholder for channel or admin id
-
+**In the image above there are two input fields. One should have name attribute of keyword and the order keyid. This to enable either searching a user with his id e.g 34 or his name e.g EMeka. Only one has to be filled to make a search. Dont submit when two are filled.**
     {
         "keyword":"name to search", 
         "keyid":"user ID"
@@ -135,60 +135,80 @@
 #### Response When you search with id 
     [
         {
-            "id": 3,
-            "name": "Marlee Rice",
-            "email": "user@user.com",
-            "email_verified_at": "2022-11-25T06:55:02.000000Z",
-            "created_at": "2022-11-25T06:55:02.000000Z",
+            "id": 4,
+            "name": "Elda Lockman",
+            "email": "nhowe@example.org",
+            "email_verified_at": "2022-11-25T06:55:03.000000Z",
+            "created_at": "2022-11-25T06:55:03.000000Z",
             "updated_at": "2022-11-25T07:51:14.000000Z",
             "channel_id": 2,
             "gender": null,
-            "phone": "(727) 577-8433",
+            "phone": "(917) 333-2709",
             "bvn": null,
             "avatar": null,
             "fullname": null,
             "channel_description": null,
-            "access": "channel",
-            "deleted_at": null
+            "access": "user",
+            "deleted_at": null,
+            "wallet": {
+                "id": 4,
+                "user_id": 4,
+                "balance": "9100.00",
+                "created_at": "2022-11-25T13:57:26.000000Z",
+                "updated_at": "2022-11-25T15:30:53.000000Z"
+            }
         }
     ]
+#### Response When you search with keyword - this is iterable.... You need to loop through it
 
-#### Response When you search with keyword
-
-    [
+   [
         {
-            "id": 9,
-            "name": "Mrs. Maude Ondricka",
-            "email": "lynch.francesco@example.net",
-            "email_verified_at": "2022-11-25T06:55:03.000000Z",
-            "created_at": "2022-11-25T06:55:03.000000Z",
-            "updated_at": "2022-11-25T07:51:14.000000Z",
-            "channel_id": 2,
+            "id": 1,
+            "name": "Sheldon Botsford",
+            "email": "superadmin@admin.com",
+            "email_verified_at": "2022-11-25T06:55:02.000000Z",
+            "created_at": "2022-11-25T06:55:02.000000Z",
+            "updated_at": "2022-11-25T06:55:02.000000Z",
+            "channel_id": null,
             "gender": null,
-            "phone": "1-463-398-4206",
+            "phone": "229-734-4136",
             "bvn": null,
             "avatar": null,
             "fullname": null,
             "channel_description": null,
-            "access": "user",
-            "deleted_at": null
+            "access": "admin",
+            "deleted_at": null,
+            "wallet": {
+                "id": 1,
+                "user_id": 1,
+                "balance": "0.00",
+                "created_at": "2022-11-25T13:57:26.000000Z",
+                "updated_at": "2022-11-25T13:57:26.000000Z"
+            }
         },
         {
-            "id": 13,
-            "name": "Mr. Nicola Gaylord DVM",
-            "email": "hschoen@example.org",
-            "email_verified_at": "2022-11-25T06:55:03.000000Z",
-            "created_at": "2022-11-25T06:55:03.000000Z",
-            "updated_at": "2022-11-25T07:51:15.000000Z",
-            "channel_id": 16,
+            "id": 2,
+            "name": "Sheldon Bolder",
+            "email": "bolder@admin.com",
+            "email_verified_at": "2022-11-25T06:55:02.000000Z",
+            "created_at": "2022-11-25T06:55:02.000000Z",
+            "updated_at": "2022-11-25T06:55:02.000000Z",
+            "channel_id": null,
             "gender": null,
-            "phone": "+1-916-838-7367",
+            "phone": "229-734-4136",
             "bvn": null,
             "avatar": null,
             "fullname": null,
             "channel_description": null,
-            "access": "user",
-            "deleted_at": null
+            "access": "admin",
+            "deleted_at": null,
+            "wallet": {
+                "id": 1,
+                "user_id": 2,
+                "balance": "0.00",
+                "created_at": "2022-11-25T13:57:26.000000Z",
+                "updated_at": "2022-11-25T13:57:26.000000Z"
+            }
         }
     ]
 
