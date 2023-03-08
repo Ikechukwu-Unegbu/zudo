@@ -113,6 +113,7 @@
 
 
 ## Searching User
+    <img src="docasset\search.jpg"/>
     When a channel search user, the search is "channel", only users under him will be searched
     When the person is "admin" all users will be searched. Backend takes care of determining who is searching
 
@@ -194,9 +195,9 @@
 
 ##  All User transaction - debit and credit in one endpoint
     To get all transactions of a particular user.
-    <b>trx_type is a column that indicates where a transaction is debit or credit.</b>
-    *When the value of this column is 1 - then the transaction is credit.*
-    *When the value is 0 - the transaction is debit*
+    trx_type is a column that indicates where a transaction is debit or credit.
+    When the value of this column is 1 - then the transaction is credit
+    When the value is 0 - the transaction is debit*
     Method: 'GET',
     Headers: 'Accept: application/json',
     Headers: 'Authorization: Bearer --Token',
