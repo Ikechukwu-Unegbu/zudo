@@ -7,7 +7,7 @@
     URL: domain.com/api/users/{channel_id}
 
 #### Success response 
-   [
+[
     {
         "id": 11,
         "name": "Katrine Dickens Jr.",
