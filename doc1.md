@@ -133,7 +133,7 @@
 
 
 #### Response When you search with id 
-    [
+[
         {
             "id": 4,
             "name": "Elda Lockman",
@@ -158,10 +158,10 @@
                 "updated_at": "2022-11-25T15:30:53.000000Z"
             }
         }
-    ]
+]
 #### Response When you search with keyword - this is iterable.... You need to loop through it
 
-   [
+[
         {
             "id": 1,
             "name": "Sheldon Botsford",
@@ -210,7 +210,7 @@
                 "updated_at": "2022-11-25T13:57:26.000000Z"
             }
         }
-    ]
+]
 
 
 ##  All User transaction - debit and credit in one endpoint
