@@ -65,6 +65,8 @@ Login.
 
 * [Update Credit/Contribution transaction record](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc.md#update-creditcontribution-trnsaction-record)
 
+* [Searching User](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc1.md#searching-user)
+
 ### New endpoints
 
 * [All User transaction - debit and credit in one endpoint](https://github.com/Ikechukwu-Unegbu/zudo/blob/main/doc1.md#all-user-transaction---debit-and-credit-in-one-endpoint)
