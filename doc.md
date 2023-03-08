@@ -17,23 +17,29 @@
     valid response should look like
 
     {
-        "id": 20,
-        "name": "Vincent",
-        "email": "admin@admin.com",
-        "email_verified_at": null,
-        "created_at": "2022-10-11T00:50:17.000000Z",
-        "updated_at": "2022-10-11T00:50:17.000000Z",
-        "channel_id": null,
+        "id": 8,
+        "name": "Santiago Kozey",
+        "email": "fjacobson@example.org",
+        "email_verified_at": "2022-11-25T06:55:03.000000Z",
+        "created_at": "2022-11-25T06:55:03.000000Z",
+        "updated_at": "2022-11-25T07:51:14.000000Z",
+        "channel_id": 3,
         "gender": null,
-        "phone": null,
+        "phone": "1-781-292-8784",
         "bvn": null,
         "avatar": null,
-        "fullname": "Vincent",
-        "channel_description": "New Market Road extend to Barracks Junction",
-        "access": "channel",
-        "deleted_at": null
+        "fullname": null,
+        "channel_description": null,
+        "access": "user",
+        "deleted_at": null,
+        "wallet": {
+            "id": 8,
+            "user_id": 8,
+            "balance": "19200.00",
+            "created_at": "2022-11-25T13:57:26.000000Z",
+            "updated_at": "2022-11-25T13:57:26.000000Z"
+        }
     }
-
 
 
 

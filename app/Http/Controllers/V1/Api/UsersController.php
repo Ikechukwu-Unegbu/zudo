@@ -70,9 +70,15 @@ class UsersController extends Controller
 
    public function userInfoByEmail($keyword, $key){
         if($keyword =='email'){
-            return response()->json(User::where('email', $key)->first());
-        }elseif($key == 'id'){
-            return response()->json(User::find($key));
+            $user = User::where('email', $key)->first();
+            $wallet = Wallet::where('user_id', $user->id)->first();
+            $user->wallet = $wallet;
+            return response()->json($user);
+        }elseif($keyword == 'id'){
+            $user = User::findOrFail($key);
+            $wallet = Wallet::where('user_id', $user->id)->first();
+            $user->wallet = $wallet;
+            return response()->json($user);
         }  
    }
 
