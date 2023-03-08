@@ -104,84 +104,84 @@
 
 
 #### Response When you search with id 
-[
-    {
-        "id": 4,
-        "name": "Elda Lockman",
-        "email": "nhowe@example.org",
-        "email_verified_at": "2022-11-25T06:55:03.000000Z",
-        "created_at": "2022-11-25T06:55:03.000000Z",
-        "updated_at": "2022-11-25T07:51:14.000000Z",
-        "channel_id": 2,
-        "gender": null,
-        "phone": "(917) 333-2709",
-        "bvn": null,
-        "avatar": null,
-        "fullname": null,
-        "channel_description": null,
-        "access": "user",
-        "deleted_at": null,
-        "wallet": {
+    [
+        {
             "id": 4,
-            "user_id": 4,
-            "balance": "9100.00",
-            "created_at": "2022-11-25T13:57:26.000000Z",
-            "updated_at": "2022-11-25T15:30:53.000000Z"
+            "name": "Elda Lockman",
+            "email": "nhowe@example.org",
+            "email_verified_at": "2022-11-25T06:55:03.000000Z",
+            "created_at": "2022-11-25T06:55:03.000000Z",
+            "updated_at": "2022-11-25T07:51:14.000000Z",
+            "channel_id": 2,
+            "gender": null,
+            "phone": "(917) 333-2709",
+            "bvn": null,
+            "avatar": null,
+            "fullname": null,
+            "channel_description": null,
+            "access": "user",
+            "deleted_at": null,
+            "wallet": {
+                "id": 4,
+                "user_id": 4,
+                "balance": "9100.00",
+                "created_at": "2022-11-25T13:57:26.000000Z",
+                "updated_at": "2022-11-25T15:30:53.000000Z"
+            }
         }
-    }
-]
+    ]
 #### Response When you search with keyword - this is iterable.... You need to loop through it
 
-[
-        {
-            "id": 1,
-            "name": "Sheldon Botsford",
-            "email": "superadmin@admin.com",
-            "email_verified_at": "2022-11-25T06:55:02.000000Z",
-            "created_at": "2022-11-25T06:55:02.000000Z",
-            "updated_at": "2022-11-25T06:55:02.000000Z",
-            "channel_id": null,
-            "gender": null,
-            "phone": "229-734-4136",
-            "bvn": null,
-            "avatar": null,
-            "fullname": null,
-            "channel_description": null,
-            "access": "admin",
-            "deleted_at": null,
-            "wallet": {
+    [
+            {
                 "id": 1,
-                "user_id": 1,
-                "balance": "0.00",
-                "created_at": "2022-11-25T13:57:26.000000Z",
-                "updated_at": "2022-11-25T13:57:26.000000Z"
+                "name": "Sheldon Botsford",
+                "email": "superadmin@admin.com",
+                "email_verified_at": "2022-11-25T06:55:02.000000Z",
+                "created_at": "2022-11-25T06:55:02.000000Z",
+                "updated_at": "2022-11-25T06:55:02.000000Z",
+                "channel_id": null,
+                "gender": null,
+                "phone": "229-734-4136",
+                "bvn": null,
+                "avatar": null,
+                "fullname": null,
+                "channel_description": null,
+                "access": "admin",
+                "deleted_at": null,
+                "wallet": {
+                    "id": 1,
+                    "user_id": 1,
+                    "balance": "0.00",
+                    "created_at": "2022-11-25T13:57:26.000000Z",
+                    "updated_at": "2022-11-25T13:57:26.000000Z"
+                }
+            },
+            {
+                "id": 2,
+                "name": "Sheldon Bolder",
+                "email": "bolder@admin.com",
+                "email_verified_at": "2022-11-25T06:55:02.000000Z",
+                "created_at": "2022-11-25T06:55:02.000000Z",
+                "updated_at": "2022-11-25T06:55:02.000000Z",
+                "channel_id": null,
+                "gender": null,
+                "phone": "229-734-4136",
+                "bvn": null,
+                "avatar": null,
+                "fullname": null,
+                "channel_description": null,
+                "access": "admin",
+                "deleted_at": null,
+                "wallet": {
+                    "id": 1,
+                    "user_id": 2,
+                    "balance": "0.00",
+                    "created_at": "2022-11-25T13:57:26.000000Z",
+                    "updated_at": "2022-11-25T13:57:26.000000Z"
+                }
             }
-        },
-        {
-            "id": 2,
-            "name": "Sheldon Bolder",
-            "email": "bolder@admin.com",
-            "email_verified_at": "2022-11-25T06:55:02.000000Z",
-            "created_at": "2022-11-25T06:55:02.000000Z",
-            "updated_at": "2022-11-25T06:55:02.000000Z",
-            "channel_id": null,
-            "gender": null,
-            "phone": "229-734-4136",
-            "bvn": null,
-            "avatar": null,
-            "fullname": null,
-            "channel_description": null,
-            "access": "admin",
-            "deleted_at": null,
-            "wallet": {
-                "id": 1,
-                "user_id": 2,
-                "balance": "0.00",
-                "created_at": "2022-11-25T13:57:26.000000Z",
-                "updated_at": "2022-11-25T13:57:26.000000Z"
-            }
-        }
-]
+    ]
 
 
 ##  All User transaction - debit and credit in one endpoint
