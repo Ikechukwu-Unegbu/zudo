@@ -85,10 +85,16 @@ class UsersController extends Controller
    public function usersByChannel($viewer_id){
         $viewer = User::find($viewer_id);
         if($viewer->access == 'channel'){
-            $users = User::where('channel_id', $viewer->id)->orderBy('id', 'desc')->paginate(20);
+            $users = User::where('channel_id', $viewer->id)->orderBy('id', 'desc')->get();
+            foreach($users as $user){
+                $user->wallet = Wallet::where('user_id', $user->id)->first();
+            }
             return response()->json($users);
         }elseif($viewer->access == 'admin'){
-            $users = User::orderBy('id', 'desc')->paginate(20);
+            $users = User::orderBy('id', 'desc')->get();
+            foreach($users as $user){
+                $user->wallet = Wallet::where('user_id', $user->id)->first();
+            }
             return response()->json($users);
         }
    }

@@ -7,109 +7,80 @@
     URL: domain.com/api/users/{channel_id}
 
 #### Success response 
+   [
     {
-    "current_page": 1,
-    "data": [
-        {
-            "id": 10,
-            "name": "Cora Veum",
-            "email": "unique64@example.org",
-            "email_verified_at": "2022-11-25T06:55:03.000000Z",
-            "created_at": "2022-11-25T06:55:03.000000Z",
-            "updated_at": "2022-11-25T07:51:14.000000Z",
-            "channel_id": 2,
-            "gender": null,
-            "phone": "+1 (229) 484-0122",
-            "bvn": null,
-            "avatar": null,
-            "fullname": null,
-            "channel_description": null,
-            "access": "user",
-            "deleted_at": null
-        },
-        {
-            "id": 9,
-            "name": "Mrs. Maude Ondricka",
-            "email": "lynch.francesco@example.net",
-            "email_verified_at": "2022-11-25T06:55:03.000000Z",
-            "created_at": "2022-11-25T06:55:03.000000Z",
-            "updated_at": "2022-11-25T07:51:14.000000Z",
-            "channel_id": 2,
-            "gender": null,
-            "phone": "1-463-398-4206",
-            "bvn": null,
-            "avatar": null,
-            "fullname": null,
-            "channel_description": null,
-            "access": "user",
-            "deleted_at": null
+        "id": 11,
+        "name": "Katrine Dickens Jr.",
+        "email": "hartmann.jaydon@example.net",
+        "email_verified_at": "2022-11-25T06:55:03.000000Z",
+        "created_at": "2022-11-25T06:55:03.000000Z",
+        "updated_at": "2022-11-25T07:51:14.000000Z",
+        "channel_id": 2,
+        "gender": null,
+        "phone": "802.474.0822",
+        "bvn": null,
+        "avatar": null,
+        "fullname": null,
+        "channel_description": null,
+        "access": "user",
+        "deleted_at": null,
+        "wallet": {
+            "id": 11,
+            "user_id": 11,
+            "balance": "10500.00",
+            "created_at": "2022-11-25T13:57:26.000000Z",
+            "updated_at": "2022-11-25T13:57:26.000000Z"
         }
-
-     
-    ],
-    "first_page_url": "http://localhost:9600/api/users/2?page=1",
-    "from": 1,
-    "last_page": 1,
-    "last_page_url": "http://localhost:9600/api/users/2?page=1",
-    "links": [
-        {
-            "url": null,
-            "label": "&laquo; Previous",
-            "active": false
-        },
-        {
-            "url": "http://localhost:9600/api/users/2?page=1",
-            "label": "1",
-            "active": true
-        },
-        {
-            "url": null,
-            "label": "Next &raquo;",
-            "active": false
-        }
-    ],
-    "next_page_url": null,
-    "path": "http://localhost:9600/api/users/2",
-    "per_page": 20,
-    "prev_page_url": null,
-    "to": 7,
-    "total": 7
-    }
-
-#### Empty response 
-
+    },
     {
-        "current_page": 1,
-        "data": [],
-        "first_page_url": "http://localhost:9600/api/users/3?page=1",
-        "from": null,
-        "last_page": 1,
-        "last_page_url": "http://localhost:9600/api/users/3?page=1",
-        "links": [
-            {
-                "url": null,
-                "label": "&laquo; Previous",
-                "active": false
-            },
-            {
-                "url": "http://localhost:9600/api/users/3?page=1",
-                "label": "1",
-                "active": true
-            },
-            {
-                "url": null,
-                "label": "Next &raquo;",
-                "active": false
-            }
-        ],
-        "next_page_url": null,
-        "path": "http://localhost:9600/api/users/3",
-        "per_page": 20,
-        "prev_page_url": null,
-        "to": null,
-        "total": 0
+        "id": 4,
+        "name": "Elda Lockman",
+        "email": "nhowe@example.org",
+        "email_verified_at": "2022-11-25T06:55:03.000000Z",
+        "created_at": "2022-11-25T06:55:03.000000Z",
+        "updated_at": "2022-11-25T07:51:14.000000Z",
+        "channel_id": 2,
+        "gender": null,
+        "phone": "(917) 333-2709",
+        "bvn": null,
+        "avatar": null,
+        "fullname": null,
+        "channel_description": null,
+        "access": "user",
+        "deleted_at": null,
+        "wallet": {
+            "id": 4,
+            "user_id": 4,
+            "balance": "9100.00",
+            "created_at": "2022-11-25T13:57:26.000000Z",
+            "updated_at": "2022-11-25T15:30:53.000000Z"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Marlee Rice",
+        "email": "user@user.com",
+        "email_verified_at": "2022-11-25T06:55:02.000000Z",
+        "created_at": "2022-11-25T06:55:02.000000Z",
+        "updated_at": "2022-11-25T07:51:14.000000Z",
+        "channel_id": 2,
+        "gender": null,
+        "phone": "(727) 577-8433",
+        "bvn": null,
+        "avatar": null,
+        "fullname": null,
+        "channel_description": null,
+        "access": "channel",
+        "deleted_at": null,
+        "wallet": {
+            "id": 3,
+            "user_id": 3,
+            "balance": "10500.00",
+            "created_at": "2022-11-25T13:57:26.000000Z",
+            "updated_at": "2022-11-25T13:57:26.000000Z"
+        }
     }
-
+]
 
 
 ## Searching User
