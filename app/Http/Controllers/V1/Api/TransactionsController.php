@@ -175,6 +175,10 @@ class TransactionsController extends Controller
 
     public function get_all_transaction($userid){
         $trx = Transaction::where('customer_id', $userid)->get();
+        foreach($trx as $tr){
+            $tr->username = $tr->customer->name;
+            $tr->fullname = $tr->customer->fullname;
+        }
         return response()->json([
             'status'=>true, 
             'trx'=>$trx
