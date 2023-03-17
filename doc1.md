@@ -95,10 +95,10 @@
 
     {view_id} is placeholder for channel or admin id
 **In the image above there are two input fields. One should have name attribute of keyword and the order keyid. This to enable either searching a user with his id e.g 34 or his name e.g EMeka. Only one has to be filled to make a search. Dont submit when two are filled.**
-    {
-        "keyword":"name to search", 
-        "keyid":"user ID"
-    }   
+{
+    "keyword":"name to search", 
+    "keyid":"user ID"
+}   
 
     Only one of the above variable should be searched with.
 
