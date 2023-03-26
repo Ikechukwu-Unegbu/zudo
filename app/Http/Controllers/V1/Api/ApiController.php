@@ -134,8 +134,10 @@ class ApiController extends Controller
             }
             //check password 
             if(Hash::check($request->password, $user->password)){
+
                 if ($user->access == 'admin') {
                     $token = $user->createToken('API TOKEN')->plainTextToken;
+                    $wallet = Wallet::where('user_id', $user->id)->first();
                     return response()->json([
                         'status' => true,
                         'message' => 'User Logged In Successfully',
@@ -143,6 +145,7 @@ class ApiController extends Controller
                         'access'  =>  $user->access,
                         'token' => $token,
                         'user' => $user,
+                        'wallet'=>$wallet
     
                     ], 200);
                 }
@@ -184,13 +187,15 @@ class ApiController extends Controller
             if ($user->access == 'channel'){
 
                 $token = $user->createToken('API TOKEN')->plainTextToken;
+                $wallet = Wallet::where('user_id', $user->id)->first();
                 return response()->json([
                     'status' => true,
                     'message' => 'User Logged In Successfully',
                     'username'  =>  $user->name,
                     'access'  =>  $user->access,
                     'token' => $token,
-                    'user'=>$user
+                    'user'=>$user,
+                    'wallet'=>$wallet
                 ], 200);
             }
 
