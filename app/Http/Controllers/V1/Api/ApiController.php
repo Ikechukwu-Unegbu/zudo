@@ -330,14 +330,14 @@ class ApiController extends Controller
 
     public function channels(Request $request)
     {
-        if ($request->wantsJson() && auth()->user()->access == 'admin')
-        {
-            $channels = User::whereAccess('channel')->orderBy('created_at', 'DESC')->get();
-            return response()->json($channels);
+        
+        $channels = User::whereAccess('channel')->orderBy('created_at', 'DESC')->get();
+        foreach($channels as $cha){
+            $wallet = Wallet::where('user_id', $cha->id)->first();
+            $cha->wallet = $wallet;
         }
-        else{
-            return null;
-        }
+        return response()->json($channels);
+    
     }
 
     public function AssignedUser()

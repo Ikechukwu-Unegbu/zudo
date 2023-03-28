@@ -427,44 +427,82 @@ Login.
     Headers: 'Authorization: Bearer --Token',
 
     Success Response:
-        {
-            "channels": [
-                {
-                    "id": 3,
-                    "name": "channel",
-                    "email": "channel@gmail.com",
-                    "email_verified_at": null,
-                    "created_at": "2022-09-20T18:25:09.000000Z",
-                    "updated_at": "2022-09-20T18:25:09.000000Z",
-                    "channel_id": null,
-                    "gender": "male",
-                    "phone": "09009090909",
-                    "bvn": null,
-                    "avatar": null,
-                    "fullname": "Channel",
-                    "channel_description": "Channel",
-                    "access": "channel",
-                    "deleted_at": null
-                },
-                {
-                    "id": 2,
-                    "name": "Emmanuel",
-                    "email": "emmanuel@gmail.com",
-                    "email_verified_at": null,
-                    "created_at": "2022-09-20T18:04:07.000000Z",
-                    "updated_at": "2022-09-20T18:04:07.000000Z",
-                    "channel_id": null,
-                    "gender": null,
-                    "phone": null,
-                    "bvn": null,
-                    "avatar": null,
-                    "fullname": "Emmanuel Ade",
-                    "channel_description": null,
-                    "access": "channel",
-                    "deleted_at": null
+        [
+            {
+                "id": 16,
+                "name": "Parklane",
+                "email": "parklane@gmail.com",
+                "email_verified_at": null,
+                "created_at": "2022-11-25T07:24:37.000000Z",
+                "updated_at": "2022-11-25T07:24:37.000000Z",
+                "channel_id": null,
+                "gender": "male",
+                "phone": "08034133376",
+                "bvn": null,
+                "avatar": null,
+                "fullname": "Parklane",
+                "channel_description": "Parklane.",
+                "access": "channel",
+                "deleted_at": null,
+                "wallet": {
+                    "id": 16,
+                    "user_id": 16,
+                    "balance": "0.00",
+                    "created_at": "2022-11-25T13:57:26.000000Z",
+                    "updated_at": "2022-11-25T13:57:26.000000Z"
                 }
-            ]
-        }
+            },
+            {
+                "id": 2,
+                "name": "Rico Trantow",
+                "email": "channel@channel.com",
+                "email_verified_at": "2022-11-25T06:55:02.000000Z",
+                "created_at": "2022-11-25T06:55:02.000000Z",
+                "updated_at": "2022-11-25T06:55:02.000000Z",
+                "channel_id": null,
+                "gender": null,
+                "phone": "(206) 321-0955",
+                "bvn": null,
+                "avatar": null,
+                "fullname": null,
+                "channel_description": null,
+                "access": "channel",
+                "deleted_at": null,
+                "wallet": {
+                    "id": 2,
+                    "user_id": 2,
+                    "balance": "0.00",
+                    "created_at": "2022-11-25T13:57:26.000000Z",
+                    "updated_at": "2022-11-25T13:57:26.000000Z"
+                }
+            },
+            {
+                "id": 3,
+                "name": "Marlee Rice",
+                "email": "user@user.com",
+                "email_verified_at": "2022-11-25T06:55:02.000000Z",
+                "created_at": "2022-11-25T06:55:02.000000Z",
+                "updated_at": "2022-11-25T07:51:14.000000Z",
+                "channel_id": 2,
+                "gender": null,
+                "phone": "(727) 577-8433",
+                "bvn": null,
+                "avatar": null,
+                "fullname": null,
+                "channel_description": null,
+                "access": "channel",
+                "deleted_at": null,
+                "wallet": {
+                    "id": 3,
+                    "user_id": 3,
+                    "balance": "10500.00",
+                    "created_at": "2022-11-25T13:57:26.000000Z",
+                    "updated_at": "2022-11-25T13:57:26.000000Z"
+                }
+            }
+        ]
+
+
 
  ##   User Assigned to Channel
     - Make a get request to this endpoint

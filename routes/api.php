@@ -37,7 +37,7 @@ Route::group([
     Route::post('/channel/create', [ApiController::class, 'AdminToCreateChannel']);
    
 });
-
+Route::get('/channelss', [ApiController::class, 'channels']);
 
 Route::group([
     'prefix' => 'channel',
