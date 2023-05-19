@@ -62,6 +62,8 @@ class ApiController extends Controller
         }
     }
 
+
+    
     public function ChannelRegistration(Request $request)
     {
         if ($request->wantsJson())
