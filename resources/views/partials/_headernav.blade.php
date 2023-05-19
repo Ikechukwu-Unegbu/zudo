@@ -36,7 +36,7 @@
           <!-- <li><a href="{{route('faq')}}">FaQ</a></li> -->
           <!-- <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li> -->
           @if(!Auth::check())
-          <li><a class="btn btn-sm btn-primary" href="{{route('login')}}">Login</a></li>
+          <li class="login_list_item text-center"><a class="btn btn-sm btn-primary login_btn text-center" href="{{route('login')}}">Login</a></li>
           @endif
         </ul>
       </nav><!-- .navbar -->

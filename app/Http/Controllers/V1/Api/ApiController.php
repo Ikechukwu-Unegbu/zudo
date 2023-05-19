@@ -232,33 +232,28 @@ class ApiController extends Controller
 
     public function resetPassword(Request $request)
     {
-        if ($request->wantsJson())
-        {
-            $this->validate($request, [
-                'token' =>  'required',
-                'email' =>  'required|email',
-                'password'  =>  'required|confirmed|min:6',
-            ]);
+       
+        $this->validate($request, [
+            'token' =>  'required',
+            'email' =>  'required|email',
+            'password'  =>  'required|confirmed|min:6',
+        ]);
 
-            $status = Password::reset(
-                    $request->only('email', 'password', 'password_confirmation', 'token'),
-                function ($user, $password) {
-                    $user->forceFill([
-                        'password' => bcrypt($password)
-                    ])->setRememberToken(Str::random(60));
+        $status = Password::reset(
+                $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password)
+                ])->setRememberToken(Str::random(60));
 
-                    $user->save();
+                $user->save();
 
-                    event(new PasswordReset($user));
-                }
-            );
+                event(new PasswordReset($user));
+            }
+        );
 
-            return $status === Password::PASSWORD_RESET ? response()->json(['message' => 'Password reset Successfully']) : response()->json(['message' => __($status)]);
-        }
-        else
-        {
-            return null;
-        }
+        return $status === Password::PASSWORD_RESET ? response()->json(['message' => 'Password reset Successfully']) : response()->json(['message' => __($status)]);
+
     }
 
     public function logout(Request $request)

@@ -25,9 +25,24 @@
   <link href="{{asset('template/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{asset('template/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
   <link href="{{asset('template/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('css/pages/main.css')}}">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('template/css/main.css')}}" rel="stylesheet">
+  <style>
+        .login_btn{
+        text-align: center !important;
+        margin-left: 1rem;
+        width: 6rem;
+    }
+
+    .login_list_item{
+        display: flex;
+        flex-direction: row;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+  </style>
 </head>
 
 <body>

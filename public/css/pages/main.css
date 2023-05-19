@@ -1,0 +1,11 @@
+.login_btn{
+    text-align: center !important;
+    margin-left: 1rem;
+}
+
+.login_list_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center !important;
+}
